@@ -1,0 +1,17 @@
+{
+  "name": "broad-ui",
+  "version": "0.0.1",
+  "description": "Broad UI",
+  "license": "ISC",
+  "keywords": [
+    "pl-vue",
+    "reactivity",
+    "component"
+  ],
+  "author": "yubo9807",
+  "homepage": "https://yubo9807.github.io/broad-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yubo9807/broad-ui.git"
+  }
+}

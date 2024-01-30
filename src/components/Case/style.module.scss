@@ -1,0 +1,43 @@
+.page-comp{
+  display: flex;
+  h2{
+    font-size: 1.4rem;
+    border-bottom: 1px solid #efeaea;
+    margin-bottom: 4px;
+  }
+}
+
+.side{
+  width: 240px;
+  border-right: 1px solid #eee;
+  font-size: 16px;
+  line-height: 2.6;
+  padding: 0 10px;
+  >li{
+    >a{
+      display: block;
+    }
+    &:not(:last-child){
+      border-bottom: 1px solid #eee;
+    }
+    &:has(:global(.exact-active)) {
+      background: rgba(204,227,255,.14);
+    }
+  }
+}
+.main{
+  width: calc(100% - 240px);
+  padding: 0 10px;
+}
+.preview{
+  border: 1px solid #eee;
+  overflow-x: auto;
+  min-height: 300px;
+}
+
+.title{
+  font-size: 16px;
+}
+.code{
+  margin-top: 10px;
+}

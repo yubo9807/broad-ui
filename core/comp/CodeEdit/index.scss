@@ -1,0 +1,63 @@
+.code-edit{
+  --row-width: 30px;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  .row-num{
+    width: var(--row-width);
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #63687C;
+    >li{
+      width: 100%;
+      line-height: 2;
+      position: relative;
+      z-index: 2;
+      font-size: 14px;
+    }
+  }
+  .content{
+    position: relative;
+    width: calc(100% - var(--row-width));
+    background: #F5F7FA;
+    overflow-x: auto;
+    > textarea, .mark{
+      font-family: Consolas,Monaco,Andale Mono,monospace;
+      font-size: 14px;
+      line-height: 2;
+      white-space: pre;
+      top: 0;
+      padding: 0 4px;
+      box-sizing: border-box;
+    }
+    > textarea{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      resize: none;
+      outline: none;
+      border: none;
+      overflow: hidden;
+      color: transparent;
+      background: transparent;
+      caret-color: black;
+      z-index: 2;
+    }
+    .mark{
+      margin: 0;
+      z-index: 1;
+    }
+    .copy{
+      position: absolute;
+      top: 4px;
+      right: 10px;
+      padding: 2px 4px;
+      background: rgba(255,255,255,.8);
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 3;
+    }
+  }
+}

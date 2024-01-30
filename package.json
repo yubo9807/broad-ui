@@ -1,0 +1,28 @@
+{
+  "name": "broad-ui",
+  "version": "1.0.0",
+  "description": "Broad UI",
+  "scripts": {
+    "dev": "vite -c build/vite.client.ts",
+    "preview": "vite preview -c build/vite.client.ts",
+    "build": "vite build -c build/vite.client.ts",
+    "build:lib": "rm -rf lib && ts-node --project build/tsconfig.lib.json build/rollup.lib.ts"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@types/node": "^20.4.2",
+    "dts-bundle-generator": "^9.2.4",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-typescript2": "^0.35.0",
+    "sass": "^1.58.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
+  },
+  "dependencies": {
+    "marked": "^11.1.1",
+    "pl-vue": "^0.5.3"
+  }
+}

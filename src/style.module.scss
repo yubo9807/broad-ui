@@ -1,0 +1,32 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  padding: 0 20px;
+  line-height: 60px;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  backdrop-filter: blur(16px);
+  z-index: 999;
+  >nav{
+    a{
+      padding: 0 20px;
+      display: inline-block;
+      height: 100%;
+      &:global(.active) {
+        background: rgba(204,227,255,.14);
+      }
+    }
+  }
+}
+.main{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  min-height: 76vh;
+}
+.footer{
+  border-top: 1px solid #eee;
+  padding: 20px 0;
+}

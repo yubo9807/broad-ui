@@ -1,0 +1,42 @@
+.partition{
+  --line-size: 3px;
+  height: 100%;
+  > .item{
+    --gap: calc(var(--line-size) / 2);
+  }
+  > .line{
+    background: #eee;
+  }
+  &.horizontal{
+    display: flex;
+    > .item{
+      height: 100%;
+      overflow-x: auto;
+      &.main{
+        width: calc(var(--skew) - var(--gap));
+      }
+      &.vice{
+        width: calc(100% - var(--skew) - var(--gap));
+      }
+    }
+    > .line{
+      width: var(--line-size);
+      cursor: col-resize;
+    }
+  }
+  &.vertical{
+    > .item{
+      overflow-y: auto;
+      &.main{
+        height: calc(var(--skew) - var(--gap));
+      }
+      &.vice{
+        height: calc(100% - var(--skew) - var(--gap));
+      }
+    }
+    > .line{
+      height: var(--line-size);
+      cursor: row-resize;
+    }
+  } 
+}
