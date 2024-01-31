@@ -1,7 +1,7 @@
 import { h } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
 
-export default function() {
+export default() => {
   const code = `package main`;
 
   function toHtml(val: string) {

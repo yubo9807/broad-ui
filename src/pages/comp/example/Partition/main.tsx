@@ -1,8 +1,7 @@
 import { h } from "pl-vue";
 import Partition from "~/core//comp/Partition";
 
-export default function() {
-
+export default () => {
   return <div style='height: 300px'>
     <Partition>
       <div>固定区域</div>

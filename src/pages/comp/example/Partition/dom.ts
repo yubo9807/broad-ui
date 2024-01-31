@@ -1,5 +1,5 @@
 import Partition from "~/core/comp/Partition";
-import { useComponent } from '~/core/utils'
+import { useComponent } from 'pl-vue'
 
 export default () => {
   const node = useComponent(Partition, {

@@ -1,4 +1,4 @@
-import { h } from "pl-vue";
+import { Component, h } from "pl-vue";
 import { Router, Route, Link } from "pl-vue/lib/router";
 import NotFound from "@/components/NotFound";
 import style from './style.module.scss';
@@ -6,14 +6,13 @@ import Example from "./example";
 import '~/core/styles/custom-code-highlight.scss';
 
 export type Item = {
-  path: string
-  name: string
-  dom?: Promise<{ default: any }>
-  domRaw?: Promise<{ default: any }>
-  main?: Promise<{ default: any }>
-  mainRaw?: Promise<{ default: any }>
-  readme?: Promise<{ default: any }>
-  
+  path:     string
+  name:     string
+  dom?:     Promise<{ default: Function }>
+  domRaw?:  Promise<{ default: string }>
+  main?:    Promise<{ default: Component }>
+  mainRaw?: Promise<{ default: string }>
+  readme?:  Promise<{ default: string }>
 }
 type Props = {
   pagePath: string

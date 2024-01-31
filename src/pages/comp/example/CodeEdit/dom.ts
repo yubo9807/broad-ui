@@ -1,4 +1,4 @@
-import { useComponent } from "~/core/utils";
+import { useComponent } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
 
 export default () => {

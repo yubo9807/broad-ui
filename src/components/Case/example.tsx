@@ -1,4 +1,4 @@
-import { Component, h, nextTick, onMounted, ref, render } from "pl-vue";
+import { Component, h, nextTick, ref, render } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
 import style from './style.module.scss';
 import { CodeConversion } from "~/core/tools";
@@ -43,7 +43,7 @@ export default function(row: Item) {
       if (row.main) {
         // pl-vue
         row.mainRaw.then(res => {
-          code.value = formatCode(res.default);
+          code.value = formatCode(res.default.trim());
         })
         row.main.then(res => {
           Comp.value = res.default;
@@ -51,7 +51,7 @@ export default function(row: Item) {
       } else {
         // 原生
         row.domRaw.then(res => {
-          code.value = formatCode(res.default);
+          code.value = formatCode(res.default.trim());
         })
         row.dom.then(res => {
           res.default();
@@ -62,9 +62,8 @@ export default function(row: Item) {
       // 说明文件
       const readmeHtml = ref('');
       const markdownRef = ref<HTMLElement>();
-      onMounted(async () => {
-        const text = (await row.readme).default;
-        readmeHtml.value = await marked.parse(text);
+      row.readme.then(async res => {
+        readmeHtml.value = await marked.parse(res.default);
         nextTick(() => {
           const nodes = markdownRef.value.querySelectorAll('pre code');
           [...nodes].forEach((el: HTMLElement) => {
