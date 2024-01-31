@@ -6,6 +6,8 @@ export * from './string';
 export * from './array';
 export * from './type';
 
+export { useComponent } from 'pl-vue';
+
 /**
  * 简化 useComponent
  * @param Comp 

@@ -1,8 +1,8 @@
-import { simplifyUseComponent } from "~/core/utils";
-import CodeEdit, { CodeEditProps } from "~/core/comp/CodeEdit";
+import { useComponent } from "~/core/utils";
+import CodeEdit from "~/core/comp/CodeEdit";
 
 export default () => {
-  const [node] = simplifyUseComponent<CodeEditProps, {}>(CodeEdit, {
+  const node = useComponent(CodeEdit, {
     defaultValue: `package main`,
     toHtml(val) {
       return `<code>${val}</code>`;

@@ -1,8 +1,8 @@
-import Partition, { PartitionProps, PartitionExpose } from "~/core/comp/Partition";
-import { simplifyUseComponent } from '~/core/utils'
+import Partition from "~/core/comp/Partition";
+import { useComponent } from '~/core/utils'
 
 export default () => {
-  const [node, expose] = simplifyUseComponent<PartitionProps, PartitionExpose>(Partition, {
+  const node = useComponent(Partition, {
     areaMain(el) {
       el.innerText = '固定区域';
     },

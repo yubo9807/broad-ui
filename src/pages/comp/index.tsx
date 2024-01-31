@@ -7,6 +7,7 @@ export default function(props: PagePropsType) {
   const list: Item[] = [
     { path: 'CodeEdit', name: '代码编辑', },
     { path: 'Partition', name: '区域分割拖拽', },
+    { path: 'UnfoldText', name: '多行文本展开', },
   ]
   list.forEach(val => {
     val.dom = import(`./example/${val.path}/dom.ts`);
