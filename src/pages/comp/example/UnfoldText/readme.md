@@ -3,9 +3,12 @@
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
+| *text | 展示文本 | string | - | - |
 | row | 行数 | number | 2 | - |
-| unfoldText | 展开文本 | string | 展开 | - |
-| foldText | 收起文本 | string | 收起 | - |
+| unfold | 展开文本 | string | 展开 | - |
+| fold | 收起文本 | string | 收起 | - |
+| unfoldEl | 展开元素控制 | (el: HTMLElement) => void | - | 如果需要更换图标请直接操作 DOM |
+| foldEl | 收起元素控制 | (el: HTMLElement) => void | - | - |
 
 ## Methods
 

@@ -67,7 +67,7 @@ export default function(row: Item) {
         nextTick(() => {
           const nodes = markdownRef.value.querySelectorAll('pre code');
           [...nodes].forEach((el: HTMLElement) => {
-            const node = render(<CodeEdit defaultValue={el.innerText} isEdit={false} isCopy={true} toHtml={val => conversion.output(el.innerText)} />);
+            const node = render(<CodeEdit defaultValue={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
             markdownRef.value.replaceChild(node, el.parentElement);
           })
         })

@@ -33,7 +33,7 @@ export default function(props: CodeEditProps) {
     <div className='content'>
       <pre className='mark' innerHTML={() => html.value}></pre>
       {props.isEdit !== !1 && <textarea value={() => inputValue.value} oninput={input}></textarea>}
-      {props.isCopy && <span className='copy' onclick={copy}>copy</span>}
     </div>
+    {props.isCopy && <span className='copy' onclick={copy}>copy</span>}
   </div>
 }

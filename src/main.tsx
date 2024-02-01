@@ -19,7 +19,7 @@ function App() {
         <Link to='/'>首页</Link>
         <Link to='/comp'>组件</Link>
         <Link to='/tools'>工具</Link>
-        <a>GitHub</a>
+        <a href='https://github.com/yubo9807/broad-ui' target='_blank'>GitHub</a>
       </nav>
     </header>
     <main className={['leayer', style.main]}>

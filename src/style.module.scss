@@ -18,14 +18,27 @@
       &:global(.active) {
         background: rgba(204,227,255,.14);
       }
+      &:last-child{
+        padding-right: 0;
+      }
+      @include utils.mediaPhone(){
+        padding: 0 10px;
+      }
     }
   }
 }
+
 .main{
   margin-top: 10px;
   margin-bottom: 10px;
   min-height: 76vh;
 }
+@include utils.mediaPhone(){
+  .main{
+    margin-top: 0;
+  }
+}
+
 .footer{
   border-top: 1px solid #eee;
   padding: 20px 0;

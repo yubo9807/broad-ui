@@ -3,10 +3,12 @@ import './index.scss'
 import { extractNumber } from "../../utils"
 
 export type UnfoldTextProps = PropsType<{
-  text:        string
-  row?:        number
-  unfoldText?: string
-  foldText?:   string
+  text:      string
+  row?:      number
+  unfold?:   string
+  fold?:     string
+  unfoldEl?: (el: HTMLElement) => void
+  foldEl?:   (el: HTMLElement) => void
 }>
 export type UnfoldTextExpose = {
   setText: (str: string) => void
@@ -16,9 +18,9 @@ export default function(props: UnfoldTextProps) {
 
   // 设置默认参数
   props = Object.assign({
-    row:         2,
-    unfoldText: '展开',
-    foldText:   '收起',
+    row:     2,
+    unfold: '展开',
+    fold:   '收起',
   }, props);
 
   const text = ref(props.text);
@@ -46,7 +48,7 @@ export default function(props: UnfoldTextProps) {
    */
   function checkTextLength() {
     const fontSize = extractNumber(computedStyle.getPropertyValue('font-size'));
-    origin.value = fontSize * text.value.length < wrapRef.value.offsetWidth * props.row - props.unfoldText.length * fontSize;
+    origin.value = fontSize * text.value.length < wrapRef.value.offsetWidth * props.row - props.unfold.length * fontSize;
   }
 
   // 暴露方法
@@ -65,10 +67,10 @@ export default function(props: UnfoldTextProps) {
       ? <div>{() => text.value}</div>
       : <div className={() => ['wrap', !isOpen.value && 'is-open']} style={`--row: ${props.row}`}>
         {() => !isOpen.value && <div className="btn">...
-          <span className="open" onclick={() => isOpen.value = true}>{props.unfoldText}</span>
+          <span className="open" onclick={() => isOpen.value = true} created={props.unfoldEl}>{props.unfold}</span>
         </div>}
         <div ref={contentRef} className="content">{() => text.value}</div>
-        {() => isOpen.value && <div className="close" onclick={() => isOpen.value = false}>{props.foldText}</div>}
+        {() => isOpen.value && <div className="close" onclick={() => isOpen.value = false} created={props.foldEl}>{props.fold}</div>}
       </div>}
   </div>
 }
