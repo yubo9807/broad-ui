@@ -1,38 +1,54 @@
-import { h, Fragment, render } from "pl-vue";
-import { Router, Route, initRouter, Link } from "pl-vue/lib/router";
+import { h, Fragment, render, ref, watch } from "pl-vue";
+import { Router, Route, initRouter, Link, useRoute } from "pl-vue/lib/router";
 import "./styles/index.scss";
 import style from './style.module.scss';
 import env from "~/config/env";
 import Home from './pages/home';
 import Tools from './pages/tools';
 import Comp from './pages/comp';
+import { isPhone } from "./utils/judge";
 
 function App() {
   initRouter({
     mode: 'hash',
   });
 
+  const open = ref(false);
+  const route = useRoute();
+  watch(() => route.path, () => {
+    open.value = false;
+  })
+
   return <>
     <header className={style.header}>
-      <Link to='/'>{env.PROJECT_NAME}</Link>
-      <nav>
-        <Link to='/'>首页</Link>
-        <Link to='/comp'>组件</Link>
-        <Link to='/tools'>工具</Link>
+      <div>
+        <span className={() => [style.iconMenu, open.value && style.active]} onclick={() => open.value = !open.value}>
+          <span></span>
+        </span>
+        <Link className={style.title} to='/'>{env.PROJECT_NAME}</Link>
+      </div>
+
+      <nav className={() => open.value && style.active} onclick={() => open.value = false}>
+        {!isPhone && <Link to='/'>简介</Link>}
+        <Link id='nav-comp' to='/comp'>组件</Link>
+        <Link id='nav-tools' to='/tools'>工具</Link>
         <a href='https://github.com/yubo9807/broad-ui' target='_blank'>GitHub</a>
       </nav>
     </header>
     <main className={['leayer', style.main]}>
       <Router>
+        <Route path="/" component={Home} />
         <Route path="/comp" component={Comp} exact={false} />
         <Route path="/tools" component={Tools} exact={false} />
-        <Route path="/" component={Home} />
       </Router>
     </main>
     <footer className={style.footer}>
       <div className="leayer">
-        技术支持：
-        <a href='http://plvue.hpyyb.cn' target='_blank'>Pl Vue</a>
+        <p style='color: #999'>暂未发布正式版本，敬请期待！</p>
+        <p>
+          技术支持：
+          <a href='http://plvue.hpyyb.cn' target='_blank'>Pl Vue</a>
+        </p>
       </div>
     </footer>
   </>

@@ -1,9 +1,9 @@
-import { Component, h } from "pl-vue";
+import { Component, h, onBeforeUnmount, onMounted, render } from "pl-vue";
 import { Router, Route, Link } from "pl-vue/lib/router";
-import NotFound from "@/components/NotFound";
 import style from './style.module.scss';
 import Example from "./example";
 import '~/core/styles/custom-code-highlight.scss';
+import { isPhone } from "@/utils/judge";
 
 export type Item = {
   path:     string
@@ -15,25 +15,37 @@ export type Item = {
   readme?:  Promise<{ default: string }>
 }
 type Props = {
-  pagePath: string
-  data:     Item[]
+  pagePath:       string
+  data:           Item[]
+  phoneMountNode: () => Element
 }
 export default function(props: Props) {
 
-  return <div className={style.pageComp}>
-    <ul className={style.side}>
-      {props.data.map(val => <li>
-        <Link to={props.pagePath + '/' + val.path}>{val.name}</Link>
-      </li>)}
-    </ul>
+  const sideNode = <ul className={style.side}>
+    {props.data.map(val => <li>
+      <Link to={props.pagePath + '/' + val.path}>{val.name}</Link>
+    </li>)}
+  </ul>;
+
+  if (isPhone) {
+    let node: HTMLElement;
+    onMounted(() => {
+      const mountNode = props.phoneMountNode();
+      node = render(sideNode);
+      mountNode.parentElement.insertBefore(node, mountNode.nextSibling);
+    })
+    onBeforeUnmount(() => {
+      node.remove();
+    })
+  }
+
+  return <div className={style.case}>
+    {!isPhone && sideNode}
     <main className={style.main}>
       <Router prefix={props.pagePath}>
-        <Route path='' component={NotFound} redirect={props.pagePath + '/'+ props.data[0].path} />
+        <Route path='' redirect={props.pagePath + '/'+ props.data[0].path} />
         {...props.data.map(val => <Route path={'/' + val.path} component={() => Example(val)} />)}
       </Router>
     </main>
   </div>
 }
-
-
-

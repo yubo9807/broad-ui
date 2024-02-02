@@ -25,6 +25,6 @@
   },
   "dependencies": {
     "marked": "^11.1.1",
-    "pl-vue": "^0.5.3"
+    "pl-vue": "^0.5.4"
   }
 }

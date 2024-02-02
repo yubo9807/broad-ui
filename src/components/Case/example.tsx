@@ -7,6 +7,7 @@ import { highlightOption } from "@/utils/string";
 import { marked } from "marked";
 import env from '~/config/env';
 import { Item } from ".";
+import { isPhone } from "@/utils/judge";
 
 class CodeConversion2 extends CodeConversion {
   constructor() {
@@ -73,13 +74,14 @@ export default function(row: Item) {
         })
       })
 
-      return <div>
-        <h2 className={style.title}>Preview</h2>
+      return <div className={style.case}>
+        {isPhone && <h1 className={style.title}>{row.name}</h1>}
+        <h2>Preview</h2>
         <div id='container' className={style.preview}>
           {() => Comp.value && <Comp.value />}
         </div>
         <div className={style.code}>
-          <h2 className={style.title}>Code</h2>
+          <h2>Code</h2>
           {() => code.value && <CodeEdit defaultValue={code.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
         </div>
         <div ref={markdownRef} className='markdown' innerHTML={() => readmeHtml.value}></div>
