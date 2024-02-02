@@ -1,4 +1,4 @@
-import { h, Fragment, render, ref, watch } from "pl-vue";
+import { h, Fragment, render, ref, watch, onMounted } from "pl-vue";
 import { Router, Route, initRouter, Link, useRoute } from "pl-vue/lib/router";
 import "./styles/index.scss";
 import style from './style.module.scss';
@@ -19,6 +19,13 @@ function App() {
     open.value = false;
   })
 
+  const navRef = ref<HTMLElement>();
+  onMounted(() => {
+    navRef.value.addEventListener('click', () => {
+      open.value = false;
+    }, true)
+  })
+
   return <>
     <header className={style.header}>
       <div>
@@ -28,7 +35,7 @@ function App() {
         <Link className={style.title} to='/'>{env.PROJECT_NAME}</Link>
       </div>
 
-      <nav className={() => open.value && style.active} onclick={() => open.value = false}>
+      <nav ref={navRef} className={() => open.value && style.active}>
         {!isPhone && <Link to='/'>简介</Link>}
         <Link id='nav-comp' to='/comp'>组件</Link>
         <Link id='nav-tools' to='/tools'>工具</Link>
