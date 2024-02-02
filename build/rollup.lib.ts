@@ -11,7 +11,8 @@ function mkdir(path: string) {
 }
 
 mkdir('lib');
-copyFileSync('core/package.json', 'lib/package.json');
+copyFileSync('package.lib.json', 'lib/package.json');
+copyFileSync('readme.md', 'lib/readme.md');
 
 const utils = readdirSync('core/utils');
 utils.forEach(async val => {
@@ -19,6 +20,9 @@ utils.forEach(async val => {
 
   const bundle = await rollup({
     input: `core/utils/${val}`,
+    external(source, importer, isResolved) {
+      return true;
+    },
     plugins: [
       typescript2({
         tsconfig: 'tsconfig.json',
@@ -31,32 +35,21 @@ utils.forEach(async val => {
   });
   await bundle.close();
 
-  const result = generateDtsBundle([{
-    filePath: `core/utils/${val}`,
-  }])
-  mkdir(`lib/utils`);
-  writeFileSync(`lib/utils/${filename}.d.ts`, result[0]);
+  // const result = generateDtsBundle([{
+  //   filePath: `core/utils/${val}`,
+  // }])
+  // mkdir(`lib/utils`);
+  // writeFileSync(`lib/utils/${filename}.d.ts`, result[0]);
 })
 
 
 const components = readdirSync('core/comp');
 components.forEach(async val => {
-  buildComp(val);
-  const result = generateDtsBundle([{
-    filePath: `core/comp/${val}/index.tsx`,
-  }])
-  mkdir(`lib/comp/${val}`);
-  writeFileSync(`lib/comp/${val}/index.d.ts`, result[0]);
-})
-
-/**
- * 打包组件
- * @param filename 
- */
-async function buildComp(filename: string) {
   const bundle = await rollup({
-    input: `core/comp/${filename}/index.tsx`,
-    external: ['../../utils'],
+    input: `core/comp/${val}/index.tsx`,
+    external(source, importer, isResolved) {
+      return true;
+    },
     plugins: [
       typescript2({
         tsconfig: 'tsconfig.json',
@@ -67,17 +60,23 @@ async function buildComp(filename: string) {
       addImport("import './index.css';"),
       // copy({
       //   targets: [{
-      //     src: `core/comp/${filename}/index.scss`, dest: `lib/comp/${filename}`,
+      //     src: `core/comp/${val}/index.scss`, dest: `lib/comp/${val}`,
       //   }]
       // })
     ],
   })
   await bundle.write({
     format: 'es',
-    file: `lib/comp/${filename}/index.js`,
+    file: `lib/comp/${val}/index.js`,
   });
   await bundle.close();
-}
+
+  // const result = generateDtsBundle([{
+  //   filePath: `core/comp/${val}/index.tsx`,
+  // }])
+  // mkdir(`lib/comp/${val}`);
+  // writeFileSync(`lib/comp/${val}/index.d.ts`, result[0]);
+})
 
 const tools = readdirSync('core/tools');
 tools.forEach(async val => {
@@ -85,7 +84,9 @@ tools.forEach(async val => {
 
   const bundle = await rollup({
     input: `core/tools/${val}`,
-    external: ['../../utils'],
+    external(source, importer, isResolved) {
+      return true;
+    },
     plugins: [
       typescript2({
         tsconfig: 'tsconfig.json',
@@ -98,11 +99,11 @@ tools.forEach(async val => {
   });
   await bundle.close();
 
-  const result = generateDtsBundle([{
-    filePath: `core/tools/${val}`,
-  }])
-  mkdir('lib/tools');
-  writeFileSync(`lib/tools/${filename}.d.ts`, result[0]);
+  // const result = generateDtsBundle([{
+  //   filePath: `core/tools/${val}`,
+  // }])
+  // mkdir('lib/tools');
+  // writeFileSync(`lib/tools/${filename}.d.ts`, result[0]);
 })
 
 

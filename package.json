@@ -6,7 +6,9 @@
     "dev": "vite -c build/vite.client.ts",
     "preview": "vite preview -c build/vite.client.ts",
     "build": "vite build -c build/vite.client.ts",
-    "build:lib": "rm -rf lib && ts-node --project build/tsconfig.lib.json build/rollup.lib.ts"
+    "tsc:lib": "tsc --project build/tsconfig.lib.json --declaration --emitDeclarationOnly",
+    "build:lib": "rm -rf lib && ts-node --project build/tsconfig.lib.json build/rollup.lib.ts && npm run tsc:lib",
+    "publish": "npm run build:lib && cd lib && npm publish"
   },
   "license": "ISC",
   "devDependencies": {

@@ -8,7 +8,8 @@
 
 ##  性能
 
-因为该组件库是基于 Pl Vue 开发的，与 Svelte 一样，我们省去了虚拟 DOM 的比较，直接更新 DOM。更多响应式更新等相关问题请前往 [Pl Vue](http://plvue.hpyyb.cn/docs/intro)。
+因为该组件库是基于 Pl Vue 开发的，与 Svelte 一样，我们省去了虚拟 DOM 的比较，直接更新 DOM。更多响应式更新等相关问题请前往
+<a href="http://plvue.hpyyb.cn/docs/intro" target="_blank">Pl Vue</a>
 
 ## 组件
 
