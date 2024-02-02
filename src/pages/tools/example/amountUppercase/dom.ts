@@ -6,11 +6,14 @@ export default () => {
   const defaultValue = '1234';
   input.value = defaultValue;
   p.innerText = amountUppercase(defaultValue);
-  input.type = 'number';
   input.style.width = '300px';
   input.addEventListener('input', e => {
     const value = (e.target as HTMLInputElement).value;
-    p.innerText = amountUppercase(value);
+    try {
+      p.innerText = amountUppercase(value);
+    } catch (err) {
+      alert(err.message);
+    }
   })
   document.getElementById('container').append(input, p);
 }

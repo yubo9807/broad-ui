@@ -11,7 +11,6 @@
   --main-font-color: #404040;
   --mark-font-color: #999;
   --link-font-color: #6088b6;
-  --vue-bg: linear-gradient(315deg,#42d392 25%,#647eff);
 
   @include utils.mediaPhone() {
     --both-sides-padding: 10px;

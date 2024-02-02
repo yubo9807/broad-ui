@@ -12,6 +12,7 @@ type Props = PropsType<{
 export default function(props: Props) {
   const html = ref('');
   const wrapRef = ref<HTMLDivElement>();
+  const conversion = new CodeConversion(highlightOption);
 
   import ('marked').then(async res => {
     html.value = await res.marked.parse(props.text);
@@ -23,8 +24,6 @@ export default function(props: Props) {
       })
     })
   })
-
-  const conversion = new CodeConversion(highlightOption);
 
   watch(() => html.value, () => {
     nextTick(() => {

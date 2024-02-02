@@ -5,8 +5,12 @@
  */
 export function amountUppercase(num: string = '') {
 	if (num === '') return '';
-	if (isNaN(Number(num))) return '无效金额字符';
-	if (num.length > 80) return '金额过大';
+	if (/[^\d]/g.test(num)) {
+		throw new Error('无效金额字符');
+	}
+	if (num.length > 80) {
+		throw new Error('金额过大，无法计算');
+	}
 
 	const digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖'];
 	const minUnits = ['', '拾', '佰', '仟'];

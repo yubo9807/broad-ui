@@ -8,7 +8,7 @@ const defaultOption = Object.freeze({
   multiRowComment: /\/\*.*?\*\//gs,
   
   // 单行注释
-  singleLineComment: /\/\/[^\n]+\n/g,
+  singleLineComment: /\/\/[^\n]+\n?/g,
 
   // 字符串
   string: /"[^"]*"|'[^']*'/g,
