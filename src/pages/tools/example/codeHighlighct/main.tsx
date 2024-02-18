@@ -24,7 +24,9 @@ export default function() {
   end 
 `
 
-  const conversion = new CodeConversion();
+  const conversion = new CodeConversion({
+    keywords: ['rule', 'end', 'knowledgebase', 'knowledge', 'reg', 'require', 'prohibit', 'and', 'or', 'in', 'true', 'false'],
+  });
   const html = conversion.output(code);
 
   return <pre innerHTML={html} style='font-size: 14px'></pre>

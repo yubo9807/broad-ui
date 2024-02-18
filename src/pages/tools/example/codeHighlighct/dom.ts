@@ -28,7 +28,9 @@ prohibit tx.args.txtype == "KJKXHZ" and contract(tx.to).state.accountType[tx.arg
 end 
 `
 
-  const conversion = new CodeConversion();
+  const conversion = new CodeConversion({
+    keywords: ['rule', 'end', 'knowledgebase', 'knowledge', 'reg', 'require', 'prohibit', 'and', 'or', 'in', 'true', 'false'],
+  });
   const html = conversion.output(code);
 
   document.getElementById('container').innerHTML = `<pre>${html}</pre>`;

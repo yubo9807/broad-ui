@@ -23,6 +23,7 @@ class CodeConversion2 extends CodeConversion {
       ._commonDealWith(option.singleLineComment, 'line-comment')
       ._commonDealWith(option.string, 'string')
       ._commonDealWith(option.number, 'number')
+      ._commonDealWith(option.constant, 'constant')
       ._keyword(option.keywords)
       ._commonDealWith(option.methods, 'methods')
       ._commonDealWith(option.object, 'object')

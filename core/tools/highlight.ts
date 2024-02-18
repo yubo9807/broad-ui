@@ -2,7 +2,7 @@ import { OptionalDeep } from "../utils/type";
 
 const defaultOption = Object.freeze({
   // 关键字
-  keywords: ['rule', 'end', 'knowledgebase', 'knowledge', 'reg', 'require', 'prohibit', 'and', 'or', 'in', 'true', 'false'],
+  keywords: ['import', 'null', 'true', 'false'],
 
   // 多行注释
   multiRowComment: /\/\*.*?\*\//gs,
@@ -13,8 +13,11 @@ const defaultOption = Object.freeze({
   // 字符串
   string: /"[^"]*"|'[^']*'/g,
 
+  // 常量
+  constant: /(?<=\s|\(|\[|{|,|:|=)[A-Z][\w|\d]+/g,
+
   // 数字
-  number: /\d*\.?\d+/g,
+  number: /(?<=\s|\(|\[|{|,|:|=|\+|-|\*|\/|\%|<|>)\d*\.?\d+/g,
 
   // 方法
   methods: /\w+(?=\()/g,
@@ -130,6 +133,7 @@ export class CodeConversion {
       ._commonDealWith(option.singleLineComment, 'line-comment')
       ._commonDealWith(option.string, 'string')
       ._commonDealWith(option.number, 'number')
+      ._commonDealWith(option.constant, 'constant')
       ._keyword(option.keywords)
       ._commonDealWith(option.methods, 'methods')
       ._commonDealWith(option.object, 'object')
