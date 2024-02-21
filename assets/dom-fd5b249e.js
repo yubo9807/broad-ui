@@ -1,8 +1,4 @@
-const t=`import { CodeConversion } from '~/core/tools';
-import '~/core/styles/custom-code-highlight.scss';
-
-export default () => {
-  const code = \`
+import{C as r}from"./index-69a6606e.js";import"./pl-vue-69fdb2db.js";import"./marked-d5c18544.js";const s=()=>{const t=`
 /*
 金融机构大额交易和可疑交易报告管理办法
 第五条　金融机构应当报告下列大额交易：
@@ -26,10 +22,4 @@ prohibit tx.args.txtype == "JNKXHZ" and contract(tx.to).state.accountType[tx.arg
 prohibit tx.args.txtype == "KJKXHZ" and contract(tx.to).state.accountType[tx.args.account] == "Person" and 
     ((tx.args.currency == "RMB" and tx.args.amount >= 200000) or (tx.args.currency == "USD" and tx.args.amount >= 10000));
 end 
-\`
-
-  const conversion = new CodeConversion();
-  const html = conversion.output(code);
-
-  document.getElementById('container').innerHTML = \`<pre>\${html}</pre>\`;
-}`;export{t as default};
+`,n=new r({keywords:["rule","end","knowledgebase","knowledge","reg","require","prohibit","and","or","in","true","false"]}).output(t);document.getElementById("container").innerHTML=`<pre>${n}</pre>`};export{s as default};
