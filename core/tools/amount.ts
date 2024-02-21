@@ -5,7 +5,7 @@
  */
 export function amountUppercase(num: string = '') {
 	if (num === '') return '';
-	if (/[^\d]/g.test(num)) {
+	if (/[^\d|\.]/gs.test(num)) {
 		throw new Error('无效金额字符');
 	}
 	if (num.length > 80) {
