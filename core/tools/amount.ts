@@ -21,7 +21,7 @@ export function amountUppercase(num: string = '') {
 	let int = '', float = '';
 	if (/\./.test(num)) {
 		int = num.split('.')[0];  // 整数位
-		float = num.split('.')[1].slice(0, 5);  // 浮点数位，只取前 5 位
+		float = num.split('.')[1].slice(0, floatUnits.length);  // 浮点数位
 
 		// 处理小数部分
 		Array(...float).forEach((val, index) => {
