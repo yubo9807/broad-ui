@@ -7,6 +7,9 @@ import Home from './pages/home';
 import Tools from './pages/tools';
 import Comp from './pages/comp';
 import { isPhone } from "./utils/judge";
+import Select from "~/core/comp/Select";
+import Option from "~/core/comp/Select/option";
+import useScreenStore from '@/store/screen';
 
 function App() {
   initRouter({
@@ -26,6 +29,8 @@ function App() {
     }, true)
   })
 
+  const screenStore = useScreenStore();
+
   return <>
     <header className={style.header}>
       <div>
@@ -34,8 +39,16 @@ function App() {
         </span>
         <Link className={style.title} to='/'>{env.PROJECT_NAME}</Link>
       </div>
+      {isPhone && <Select model={screenStore.isPlVue} onChange={screenStore.setIsPlVue}>
+        <Option label="原生组件" value={false} />
+        <Option label="PlVue 组件" value={true} />
+      </Select>}
 
       <nav ref={navRef} className={() => open.value && style.active}>
+        {!isPhone && <Select model={screenStore.isPlVue} onChange={screenStore.setIsPlVue}>
+          <Option label="原生组件" value={false} />
+          <Option label="PlVue 组件" value={true} />
+        </Select>}
         {!isPhone && <Link to='/'>简介</Link>}
         <Link id='nav-comp' to='/comp'>组件</Link>
         <Link id='nav-tools' to='/tools'>工具</Link>

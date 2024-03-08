@@ -8,6 +8,7 @@ import { marked } from "marked";
 import env from '~/config/env';
 import { Item } from ".";
 import { isPhone } from "@/utils/judge";
+import useScreenStore from '@/store/screen';
 
 class CodeConversion2 extends CodeConversion {
   constructor() {
@@ -42,7 +43,8 @@ export default function(row: Item) {
 
       const Comp = ref<Component>();
 
-      if (row.main) {
+      const screenStore = useScreenStore();
+      if (screenStore.isPlVue) {
         // pl-vue
         row.mainRaw.then(res => {
           code.value = formatCode(res.default.trim());

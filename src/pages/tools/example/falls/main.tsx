@@ -6,7 +6,7 @@ export default function() {
   const wrapRef = ref<HTMLElement>();
   onMounted(() => {
     falls(wrapRef.value, {
-      column: 4,
+      column: Math.max(Math.trunc(wrapRef.value.offsetWidth / 200), 2),
       rowGap: 20,
       colGap: 16,
     })
