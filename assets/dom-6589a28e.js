@@ -1,0 +1,1 @@
+import{C as o}from"./chart-wave-59bf7141.js";import"./index-09f57008.js";import"./pl-vue-2c9f6500.js";import"./marked-d5c18544.js";const m=()=>{const t=new o({el:document.getElementById("container"),percentage:30,size:300});setInterval(()=>{const e=Math.random()*100;t.option.percentage=e,t.option.color=e>60?"#ffaa00":"#0080ff"},2e3)};export{m as default};
