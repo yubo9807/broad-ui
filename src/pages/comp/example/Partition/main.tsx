@@ -1,5 +1,5 @@
 import { h } from "pl-vue";
-import Partition from "~/core//comp/Partition";
+import Partition from "~/core/comp/Partition";
 
 export default () => {
   return <div style='height: 300px'>
