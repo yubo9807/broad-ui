@@ -91,7 +91,7 @@ export class Fulls {
    */
   computeWrapHeight() {
     const maxColumn = this._queryColumn('max');
-    return this._matrix[maxColumn].reduce((a, b) => a + b + this.option.rowGap);
+    return this._matrix[maxColumn].reduce((a, b) => a + b + this.option.rowGap) - this.option.rowGap;
   }
 
   /**

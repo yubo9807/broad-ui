@@ -1,12 +1,13 @@
 import { ChartWait } from "~/core/tools";
 
 export default () => {
+  const wrapEl = document.getElementById('container')
   const wait = new ChartWait({
-    el: document.getElementById('container'),
+    el: wrapEl,
     percentage: 30,
-    size: 300,
+    size: [wrapEl.clientWidth, 300],
   })
-  
+
   setInterval(() => {
     const num = Math.random() * 100;
     wait.option.percentage = num;

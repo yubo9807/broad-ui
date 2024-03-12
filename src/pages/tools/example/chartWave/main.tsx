@@ -2,11 +2,12 @@ import { h, onMounted, ref } from "pl-vue";
 import { ChartWait } from "~/core/tools";
 
 export default function() {
-  const el = ref<HTMLElement>();
+  const wrapRef = ref<HTMLElement>();
 
   onMounted(() => {
     const wait = new ChartWait({
-      el: el.value,
+      el: wrapRef.value,
+      size: [wrapRef.value.clientWidth, 300],
       percentage: 30,
     })
 
@@ -16,5 +17,5 @@ export default function() {
     }, 2000)
   })
 
-  return <div ref={el} style='width: 300px;'></div>
+  return <div ref={wrapRef}></div>
 }

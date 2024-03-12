@@ -40,14 +40,14 @@ function App() {
         <Link className={style.title} to='/'>{env.PROJECT_NAME}</Link>
       </div>
       {isPhone && <Select model={screenStore.isPlVue} onChange={screenStore.setIsPlVue}>
-        <Option label="原生组件" value={false} />
-        <Option label="PlVue 组件" value={true} />
+        <Option label="原生" value={false} />
+        <Option label="PlVue" value={true} />
       </Select>}
 
       <nav ref={navRef} className={() => open.value && style.active}>
         {!isPhone && <Select model={screenStore.isPlVue} onChange={screenStore.setIsPlVue}>
-          <Option label="原生组件" value={false} />
-          <Option label="PlVue 组件" value={true} />
+          <Option label="原生" value={false} />
+          <Option label="PlVue" value={true} />
         </Select>}
         {!isPhone && <Link to='/'>简介</Link>}
         <Link id='nav-comp' to='/comp'>组件</Link>

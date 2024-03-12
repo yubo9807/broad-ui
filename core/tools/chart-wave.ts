@@ -2,13 +2,13 @@ import { isEven } from "../utils/number"
 
 
 type Option = {
-  el:            HTMLElement  // 挂载节点
-  percentage:    number       // 百分比 0 ～ 100
-  radian?:       number       // 波浪弧度放大倍数  default: 1
-  color?:        string       // 波浪颜色
-  size?:         number       // 容器大小
-  noTransition?: boolean      // 刷新时不过渡  default: false
-  speed?:        number       // 动画速度  default: 1
+  el:            HTMLElement                // 挂载节点
+  percentage:    number                     // 百分比 0 ～ 100
+  radian?:       number                     // 波浪弧度放大倍数  default: 1
+  color?:        string                     // 波浪颜色
+  size?:         number | [number, number]  // 容器大小
+  noTransition?: boolean                    // 刷新时不过渡  default: false
+  speed?:        number                     // 动画速度  default: 1
 }
 
 
@@ -29,10 +29,12 @@ export class ChartWait {
       noTransition: false,
       speed:        1,
     }, option);
+    this.option.size ??= option.el.clientWidth;
+    this.option.size = Array.isArray(this.option.size) ? this.option.size : [this.option.size, this.option.size];
     this._canvas = document.createElement('canvas');
-    this._canvas.width = option.size || option.el.offsetWidth;
-    this._canvas.height = option.size || option.el.offsetWidth;
-    this._canvas.style.borderRadius = '50%';
+    this._canvas.width = this.option.size[0];
+    this._canvas.height = this.option.size[1];
+    // this._canvas.style.borderRadius = '50%';
     option.el.appendChild(this._canvas);
     this._ctx = this._canvas.getContext('2d');
     this.#width = this._canvas.width / 2;
@@ -140,8 +142,10 @@ export class ChartWait {
    * @returns 
    */
   refresh() {
-    this._canvas.width = this.option.size || this.option.el.offsetWidth;
-    this._canvas.height = this.option.size || this.option.el.offsetWidth;
+    this.option.size ??= this.option.el.clientWidth;
+    this.option.size = Array.isArray(this.option.size) ? this.option.size : [this.option.size, this.option.size];
+    this._canvas.width = this.option.size[0];
+    this._canvas.height = this.option.size[1];
     this.#width = this._canvas.width / 2;
 
     if (this.option.noTransition) return;
