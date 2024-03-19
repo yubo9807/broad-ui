@@ -1,9 +1,9 @@
-import { PropsType, defineExpose, h, onMounted, ref } from "pl-vue"
-import { extractNumber } from "../../utils"
+import { PropsType, defineExpose, h, onMounted, ref, watch } from "pl-vue"
+import { extractNumber, isObject } from "../../utils"
 import './index.scss'
 
 export type UnfoldTextProps = PropsType<{
-  text:      string
+  model:     string | { value: string }
   row?:      number
   unfold?:   string
   fold?:     string
@@ -11,8 +11,8 @@ export type UnfoldTextProps = PropsType<{
   foldEl?:   (el: HTMLElement) => void
 }>
 export type UnfoldTextExpose = {
-  setText: (str: string) => void
-  setOpen: (open: boolean) => void
+  setModel: (str: string) => void
+  setOpen:  (open: boolean) => void
 }
 export default function(props: UnfoldTextProps) {
 
@@ -23,7 +23,7 @@ export default function(props: UnfoldTextProps) {
     fold:   '收起',
   }, props);
 
-  const text = ref(props.text);
+  const model = (isObject(props.model) ? props.model : ref(props.model)) as { value: string };
   const origin = ref(false);
   const isOpen = ref(false);
 
@@ -35,6 +35,10 @@ export default function(props: UnfoldTextProps) {
     computedStyle = getComputedStyle(wrapRef.value);
     checkTextLength();
   })
+  watch(() => model.value, () => {
+    checkTextLength();
+  })
+
   onMounted(() => {
     const lineHeight = extractNumber(computedStyle.getPropertyValue('--line-height'));
     const height = contentRef.value.offsetHeight;
@@ -48,14 +52,13 @@ export default function(props: UnfoldTextProps) {
    */
   function checkTextLength() {
     const fontSize = extractNumber(computedStyle.getPropertyValue('font-size'));
-    origin.value = fontSize * text.value.length < wrapRef.value.offsetWidth * props.row - props.unfold.length * fontSize;
-  }
+    origin.value = fontSize * model.value.length < wrapRef.value.offsetWidth * props.row - props.unfold.length * fontSize;
+  }  
 
   // 暴露方法
   defineExpose<UnfoldTextExpose>({
-    setText(str) {
-      text.value = str;
-      checkTextLength();
+    setModel(str) {
+      model.value = str;
     },
     setOpen(bool) {
       isOpen.value = bool;
@@ -64,12 +67,12 @@ export default function(props: UnfoldTextProps) {
 
   return <div ref={wrapRef} className='unfold-text'>
     {() => origin.value
-      ? <div>{() => text.value}</div>
+      ? <div>{() => model.value}</div>
       : <div className={() => ['wrap', !isOpen.value && 'is-open']} style={`--row: ${props.row}`}>
         {() => !isOpen.value && <div className="btn">...
           <span className="open" onclick={() => isOpen.value = true} created={props.unfoldEl}>{props.unfold}</span>
         </div>}
-        <div ref={contentRef} className="content">{() => text.value}</div>
+        <div ref={contentRef} className="content">{() => model.value}</div>
         {() => isOpen.value && <div className="close" onclick={() => isOpen.value = false} created={props.foldEl}>{props.fold}</div>}
       </div>}
   </div>

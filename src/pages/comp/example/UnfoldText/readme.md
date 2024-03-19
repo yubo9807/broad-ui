@@ -3,7 +3,7 @@
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
-| *text | 展示文本 | string | - | - |
+| *model | 展示文本 | string | - | - |
 | row | 行数 | number | 2 | - |
 | unfold | 展开文本 | string | 展开 | - |
 | fold | 收起文本 | string | 收起 | - |
@@ -14,7 +14,7 @@
 
 | 方法名 | 说明 | 参数 | 备注 |
 | --- | --- | --- | --- |
-| setText | 设置文本内容 | (str: string) => void | - |
+| setModel | 设置文本内容 | (str: string) => void | - |
 | setOpen | 设置展开/收起 | (open: boolean) => void | - |
 
 ## 说明
