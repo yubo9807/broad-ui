@@ -1,6 +1,6 @@
 import { PropsType, defineExpose, h, onMounted, ref } from "pl-vue"
-import './index.scss'
 import { extractNumber } from "../../utils"
+import './index.scss'
 
 export type UnfoldTextProps = PropsType<{
   text:      string

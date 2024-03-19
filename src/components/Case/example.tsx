@@ -104,8 +104,14 @@ export default function(row: Item) {
         </div>
         <div ref={markdownRef} className='markdown' innerHTML={() => readmeHtml.value}></div>
 
-        <Dialog model={visible}>
-          {() => originCode.value && <CodeEdit defaultValue={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+        <Dialog model={visible} className={style.dialogOriginCode}>
+          <header>
+            <h3>源码</h3>
+          </header>
+          <main>
+            {() => originCode.value && <CodeEdit defaultValue={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+          </main>
+          <span className={style.close} onclick={() => visible.value = false}>×</span>
         </Dialog>
       </div>
     }

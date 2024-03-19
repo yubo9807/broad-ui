@@ -1,6 +1,6 @@
+import { PropsType, computed, h, ref } from 'pl-vue';
 import { copyToBoard } from '../../utils';
 import './index.scss';
-import { PropsType, computed, h, ref } from 'pl-vue';
 
 export type CodeEditProps = PropsType<{
   defaultValue?: string

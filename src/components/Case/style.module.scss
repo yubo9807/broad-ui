@@ -66,3 +66,30 @@
   top: 0;
   cursor: pointer;
 }
+
+.dialog-origin-code{
+  height: 86vh;
+  --header-height: 40px;
+  header{
+    height: var(--header-height);
+    line-height: var(--header-height);
+    padding: 0 10px;
+  }
+  main{
+    height: calc(100% - var(--header-height));
+    overflow-y: auto;
+  }
+  .close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    --size: var(--header-height);
+    width: var(--size);
+    height: var(--size);
+    text-align: center;
+    line-height: var(--size);
+    font-size: 20px;
+    z-index: 999;
+    cursor: pointer;
+  }
+}

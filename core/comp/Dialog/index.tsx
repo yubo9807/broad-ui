@@ -40,8 +40,8 @@ export default function(props: Props) {
     }
   }
 
-  return <dialog ref={dialogRef} className={['dialog', props.className]} onmousedown={mouseDown} onclose={close}>
-    <div className='wrap'>
+  return <dialog ref={dialogRef} className='dialog' onmousedown={mouseDown} onclose={close}>
+    <div className={['wrap', props.className]}>
       {props.children}
     </div>
   </dialog>
