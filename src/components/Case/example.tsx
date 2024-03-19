@@ -1,5 +1,6 @@
-import { Component, h, nextTick, ref, render } from "pl-vue";
+import { Component, h, nextTick, ref, render, watch } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
+import Dialog from "~/core/comp/Dialog";
 import style from './style.module.scss';
 import { CodeConversion } from "~/core/tools";
 import '~/core/styles/custom-code-highlight.scss';
@@ -77,6 +78,19 @@ export default function(row: Item) {
         })
       })
 
+      const visible = ref(false);
+      const originCode = ref('');
+      watch(() => visible.value, value => {
+        if (value) {
+          row.code.then(async res => {
+            originCode.value = res.default.trim();
+          })
+        } else {
+          originCode.value = '';
+        }
+      })
+      
+
       return <div className={style.case}>
         {isPhone && <h1 className={style.title}>{row.name}</h1>}
         <h2>Preview</h2>
@@ -86,8 +100,13 @@ export default function(row: Item) {
         <div className={style.code}>
           <h2>Code</h2>
           {() => code.value && <CodeEdit defaultValue={code.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+          <a className={style.originCodeBtn} onclick={() => visible.value = true}>源码</a>
         </div>
         <div ref={markdownRef} className='markdown' innerHTML={() => readmeHtml.value}></div>
+
+        <Dialog model={visible}>
+          {() => originCode.value && <CodeEdit defaultValue={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+        </Dialog>
       </div>
     }
 

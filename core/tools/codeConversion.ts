@@ -1,39 +1,32 @@
 import { OptionalDeep } from "../utils/type";
 
-const defaultOption = Object.freeze({
-  // 关键字
-  keywords: ['import', 'null', 'true', 'false'],
+type Option = {
+  keywords:          string[]  // 关键字
+  multiRowComment:   RegExp    // 多行注释
+  singleLineComment: RegExp    // 单行注释
+  string:            RegExp    // 字符串
+  constant:          RegExp    // 常量
+  number:            RegExp    // 数字
+  methods:           RegExp    // 方法
+  object:            RegExp    // 对象取值
+}
 
-  // 多行注释
-  multiRowComment: /\/\*.*?\*\//gs,
-  
-  // 单行注释
-  singleLineComment: /\/\/[^\n]+\n?/g,
-
-  // 字符串
-  string: /"[^"]*"|'[^']*'/g,
-
-  // 常量
-  constant: /(?<=\s|\(|\[|{|,|:|=)[A-Z][\w|\d]+/g,
-
-  // 数字
-  number: /(?<=\s|\(|\[|{|,|:|=|\+|-|\*|\/|\%|<|>)\d*\.?\d+/g,
-
-  // 方法
-  methods: /\w+(?=\()/g,
-
-  // 对象取值
-  object: /\w*\./sg,
-
-})
-
-type CodeConversionOption = OptionalDeep<typeof defaultOption>
+type CodeConversionOption = OptionalDeep<Option>
 
 export class CodeConversion {
-  _option: typeof defaultOption;
+  _option: Option;
   _textList: { content: string }[];
   constructor(option: CodeConversionOption = {}) {
-    this._option = Object.assign({}, defaultOption, option);
+    this._option = Object.assign({
+      keywords: ['import', 'null', 'true', 'false'],  
+      multiRowComment: /\/\*.*?\*\//gs,
+      singleLineComment: /\/\/[^\n]+\n?/g,
+      string: /"[^"]*"|'[^']*'/g,
+      constant: /(?<=\s|\(|\[|{|,|:|=)[A-Z][\w|\d]+/g,
+      number: /(?<=\s|\(|\[|{|,|:|=|\+|-|\*|\/|\%|<|>)\d*\.?\d+/g,
+      methods: /\w+(?=\()/g,
+      object: /\w*\./sg,
+    }, option);
   }
 
   /**
@@ -126,7 +119,7 @@ export class CodeConversion {
    */
   output(text: string) {
     this._textList = [{ content: text.replace(/</g, '&lt;').replace(/>/g, '&gt;') }];
-    const option = this._option as typeof defaultOption;
+    const option = this._option;
 
     return this
       ._commonDealWith(option.multiRowComment, 'block-comment')

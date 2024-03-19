@@ -51,7 +51,7 @@ function App() {
         </Select>}
         {!isPhone && <Link to='/'>简介</Link>}
         <Link id='nav-comp' to='/comp'>组件</Link>
-        <Link id='nav-tools' to='/tools'>工具</Link>
+        <Link id='nav-tools' to='/tools'>工具类</Link>
         <a href='https://github.com/yubo9807/broad-ui' target='_blank'>GitHub</a>
       </nav>
     </header>

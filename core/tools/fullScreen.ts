@@ -42,29 +42,29 @@ export class FullScreen {
    * 退出全屏
    */
   exit() {
-    this.isFullScreen() && this.exitFullScreenName && document[this.exitFullScreenName]();
+    this.isFull() && this.exitFullScreenName && document[this.exitFullScreenName]();
   }
 
   /**
    * 是否处于全屏状态
    * @returns 
    */
-  isFullScreen() {
-    return !!this.getfullScreenEl();
+  isFull() {
+    return !!this.getEl();
   }
 
   /**
    * 进入/退出全屏
    */
   toggle(el = document.documentElement) {
-    this.isFullScreen() ? this.exit() : this.enter(el);
+    this.isFull() ? this.exit() : this.enter(el);
   }
 
   /**
    * 获取当前全屏元素
    * @returns 
    */
-  getfullScreenEl() {
+  getEl() {
     return document[this.fullScreenName] || null;
   }
 

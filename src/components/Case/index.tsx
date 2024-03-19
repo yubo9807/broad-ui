@@ -13,6 +13,7 @@ export type Item = {
   main?:    Promise<{ default: Component }>
   mainRaw?: Promise<{ default: string }>
   readme?:  Promise<{ default: string }>
+  code?:    Promise<{ default: string }>
 }
 type Props = {
   pagePath:       string

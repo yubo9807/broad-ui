@@ -7,7 +7,7 @@ export default () => {
     { name: '进入全屏', handler: () => fullScreen.enter(), },
     { name: '退出全屏', handler: () => fullScreen.exit(), },
     { name: '进入/退出全屏', handler: () => fullScreen.toggle(), },
-    { name: '是否处于全屏状态全屏', handler: () => alert(fullScreen.isFullScreen()), },
+    { name: '是否处于全屏状态全屏', handler: () => alert(fullScreen.isFull()), },
     { name: '指定元素进入/退出全屏', handler: () => fullScreen.toggle(container), },
   ]
 

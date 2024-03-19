@@ -1,0 +1,18 @@
+.dialog:modal{
+  border: none;
+  outline: none;
+  padding: 0;
+  min-width: 200px;
+  min-height: 50px;
+}
+.dialog:-internal-dialog-in-top-layer::backdrop{
+  background: rgba(0,0,0,.6);
+}
+.close-icon{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: white;
+}
