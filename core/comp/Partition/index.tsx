@@ -2,12 +2,12 @@ import { PropsType, createSignal, defineExpose, h, ref } from "pl-vue";
 import './index.scss';
 
 export type PartitionProps = PropsType<{
-  main?: 1 | 2,
-  size?: string,                     // main一边默认大小
-  type?: 'horizontal' | 'vertical',  // 方向
-  className?: string,
-  areaMain?: (el: HTMLElement) => void
-  areaVice?: (el: HTMLElement) => void
+  main?:      1 | 2
+  size?:      string                     // main一边默认大小
+  type?:      'horizontal' | 'vertical'  // 方向
+  className?: string
+  areaMain?:  (el: HTMLElement) => void
+  areaVice?:  (el: HTMLElement) => void
 }>
 export type PartitionExpose = {
   setPartial: (value: string) => void
@@ -42,6 +42,7 @@ export default function(props: PartitionProps) {
     const rect = wrapEl.value.getBoundingClientRect()
     if (props.type === 'horizontal') {
       let skewX = props.main === 1 ? e.clientX - rect.left : rect.width - e.clientX + rect.left;
+      console.log(skewX);
       setPartial(skewX + 'px');
     } else {
       const skewY = props.main === 1 ? e.clientY - rect.top : rect.height - e.clientY + rect.top;

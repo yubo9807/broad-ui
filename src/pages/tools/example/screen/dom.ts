@@ -1,13 +1,14 @@
-import { enterFullScreen, exitFullScreen, toggleFullScreen, isFullScreen } from '~/core/tools';
+import { FullScreen } from '~/core/tools';
 
 export default () => {
   const container = document.getElementById('container');
+  const fullScreen = new FullScreen();
   const list = [
-    { name: '进入全屏', handler: enterFullScreen, },
-    { name: '退出全屏', handler: exitFullScreen, },
-    { name: '进入/退出全屏', handler: toggleFullScreen, },
-    { name: '是否处于全屏状态全屏', handler: () => alert(isFullScreen()), },
-    { name: '指定元素进入/退出全屏', handler: () => toggleFullScreen(container), },
+    { name: '进入全屏', handler: () => fullScreen.enter(), },
+    { name: '退出全屏', handler: () => fullScreen.exit(), },
+    { name: '进入/退出全屏', handler: () => fullScreen.toggle(), },
+    { name: '是否处于全屏状态全屏', handler: () => alert(fullScreen.isFullScreen()), },
+    { name: '指定元素进入/退出全屏', handler: () => fullScreen.toggle(container), },
   ]
 
   const wrap = document.createElement('div');
