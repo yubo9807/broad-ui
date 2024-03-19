@@ -1,16 +1,17 @@
 import { PropsType, watch, h, onMounted, ref } from "pl-vue"
+import type { RefImpl } from "pl-vue/lib/reactivity/ref";
 import { isObject } from "../../utils";
 import './index.scss';
 
 type Props = PropsType<{
-  model:         boolean | { value: boolean }
+  model:         boolean | RefImpl<boolean>
   className?:    string
   isModalClose?: boolean  // 点击蒙层关闭，默认为 true
 }>
 export default function(props: Props) {
 
   const dialogRef = ref<HTMLDialogElement>(null);
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as { value: boolean };
+  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<boolean>;
 
   onMounted(() => {
     watch(() => model.value, value => {

@@ -3,13 +3,13 @@
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
-| keywords | 关键字 | string[] | - | - |
-| multiRowComment | 多行注释 | regexp | - | - |
-| singleLineComment | 单行注释 | regexp | - | - |
-| string | 字符串 | regexp | - | - |
-| number | 单行注释 | regexp | - | - |
-| methods | 方法调用 | regexp | - | - |
-| object | 对象取值 | regexp | - | - |
+| keywords | 关键字 | `string[]` | - | - |
+| multiRowComment | 多行注释 | `regexp` | - | - |
+| singleLineComment | 单行注释 | `regexp` | - | - |
+| string | 字符串 | `regexp` | - | - |
+| number | 单行注释 | `regexp` | - | - |
+| methods | 方法调用 | `regexp` | - | - |
+| object | 对象取值 | `regexp` | - | - |
 
 ## 说明
 

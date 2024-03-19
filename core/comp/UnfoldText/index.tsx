@@ -1,9 +1,10 @@
 import { PropsType, defineExpose, h, onMounted, ref, watch } from "pl-vue"
+import { RefImpl } from "pl-vue/lib/reactivity/ref"
 import { extractNumber, isObject } from "../../utils"
 import './index.scss'
 
 export type UnfoldTextProps = PropsType<{
-  model:     string | { value: string }
+  model:     string | RefImpl<string>
   row?:      number
   unfold?:   string
   fold?:     string
@@ -23,7 +24,7 @@ export default function(props: UnfoldTextProps) {
     fold:   '收起',
   }, props);
 
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as { value: string };
+  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<string>;
   const origin = ref(false);
   const isOpen = ref(false);
 

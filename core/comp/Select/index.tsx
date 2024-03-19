@@ -1,16 +1,17 @@
 import { h, PropsType, ref } from "pl-vue";
+import { RefImpl } from "pl-vue/lib/reactivity/ref";
 import { OptionValue } from "./option";
 import { isObject } from "../../utils";
 import './module.scss';
 
 type Props = PropsType<{
-  model?:        OptionValue | { value: OptionValue }
+  model?:        OptionValue | RefImpl<OptionValue>
   onChange?:     (val: OptionValue) => void
   className?:    string
 }>
 export default function(props: Props) {
 
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as { value: OptionValue };
+  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<OptionValue>;
   props.children.forEach(val => {
     val.attrs.selected = () => model.value === val.attrs.value;
   })

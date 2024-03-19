@@ -20,7 +20,7 @@ export default function(props: PagePropsType) {
     val.domRaw = import(`./example/${val.path}/dom.ts?raw`);
     val.main = import(`./example/${val.path}/main.tsx`);
     val.mainRaw = import(`./example/${val.path}/main.tsx?raw`);
-    val.readme = import(`./example/${val.path}/readme.md?raw`);
+    val.readme = import(`../../../core/tools/${val.path}.md?raw`);
     val.code = import(`../../../core/tools/${val.path}.ts?raw`);
   })
 

@@ -1,12 +1,14 @@
 import { h, PropsType, ref } from "pl-vue"
+import { RefImpl } from "pl-vue/lib/reactivity/ref"
+import { isObject } from "../../utils"
 import './module.scss'
 
 type Props = PropsType<{
-  model:    boolean | { value: boolean }
+  model:    boolean | RefImpl<boolean>
   onChange?: (val: boolean) => void
 }>
 export default function(props: Props) {
-  const model = typeof props.model === 'object' ? props.model : ref(props.model)
+  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<boolean>
 
   function handleCilik() {
     model.value = !model.value;
