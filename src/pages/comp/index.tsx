@@ -11,6 +11,9 @@ export default function(props: PagePropsType) {
     { path: 'CodeEdit', name: '代码编辑', },
     { path: 'Partition', name: '区域分割拖拽', },
     { path: 'UnfoldText', name: '多行文本展开', },
+    { path: 'BasicDialog', name: '系统弹窗', },
+    { path: 'Switch', name: '开关', },
+    { path: 'Message', name: '消息提示', },
   ]
   list.forEach(val => {
     val.dom = import(`./example/${val.path}/dom.ts`);

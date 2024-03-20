@@ -19,7 +19,7 @@ export default function(props: Props) {
     nextTick(() => {
       const nodes = wrapRef.value.querySelectorAll('pre code');
       [...nodes].forEach((el: HTMLElement) => {
-        const node = render(<CodeEdit defaultValue={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
+        const node = render(<CodeEdit model={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
         wrapRef.value.replaceChild(node, el.parentElement);
       })
     })

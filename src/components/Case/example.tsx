@@ -1,6 +1,6 @@
 import { Component, h, nextTick, ref, render, watch } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
-import Dialog from "~/core/comp/Dialog";
+import Dialog from "~/core/comp/BasicDialog";
 import style from './style.module.scss';
 import { CodeConversion } from "~/core/tools";
 import '~/core/styles/custom-code-highlight.scss';
@@ -72,7 +72,7 @@ export default function(row: Item) {
         nextTick(() => {
           const nodes = markdownRef.value.querySelectorAll('pre code');
           [...nodes].forEach((el: HTMLElement) => {
-            const node = render(<CodeEdit defaultValue={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
+            const node = render(<CodeEdit model={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
             markdownRef.value.replaceChild(node, el.parentElement);
           })
         })
@@ -99,7 +99,7 @@ export default function(row: Item) {
         </div>
         <div className={style.code}>
           <h2>Code</h2>
-          {() => code.value && <CodeEdit defaultValue={code.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+          {() => code.value && <CodeEdit model={code.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
           <a className={style.originCodeBtn} onclick={() => visible.value = true}>源码</a>
         </div>
         <div ref={markdownRef} className='markdown' innerHTML={() => readmeHtml.value}></div>
@@ -109,7 +109,7 @@ export default function(row: Item) {
             <h3>源码</h3>
           </header>
           <main>
-            {() => originCode.value && <CodeEdit defaultValue={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+            {() => originCode.value && <CodeEdit model={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
           </main>
           <span className={style.close} onclick={() => visible.value = false}>×</span>
         </Dialog>

@@ -80,6 +80,7 @@ components.forEach(async val => {
 
 const tools = readdirSync('core/tools');
 tools.forEach(async val => {
+  if (!val.endsWith('.ts')) return;
   const filename = val.split('.')[0];
 
   const bundle = await rollup({

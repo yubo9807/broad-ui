@@ -3,7 +3,7 @@
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
-| *model | 展示文本 | `string \| RefImpl<string>` | - | - |
+| model* | 展示文本 | `string \| RefImpl<string>` | - | - |
 | row | 行数 | `number` | 2 | - |
 | unfold | 展开文本 | `string` | 展开 | - |
 | fold | 收起文本 | `string` | 收起 | - |

@@ -8,5 +8,5 @@ export default() => {
     return `<code>${val}</code>`
   }
 
-  return <CodeEdit defaultValue={code} toHtml={toHtml} />
+  return <CodeEdit model={code} toHtml={toHtml} />
 }

@@ -2,11 +2,13 @@
   border: none;
   outline: none;
   padding: 0;
-  min-width: 200px;
-  min-height: 50px;
 }
 .dialog:-internal-dialog-in-top-layer::backdrop{
   background: rgba(0,0,0,.6);
+}
+.wrap{
+  min-width: 200px;
+  min-height: 50px;
 }
 .close-icon{
   position: fixed;

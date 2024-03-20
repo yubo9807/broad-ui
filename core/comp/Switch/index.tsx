@@ -4,8 +4,9 @@ import { isObject } from "../../utils"
 import './module.scss'
 
 type Props = PropsType<{
-  model:    boolean | RefImpl<boolean>
-  onChange?: (val: boolean) => void
+  model?:     boolean | RefImpl<boolean>
+  onChange?:  (val: boolean) => void
+  className?: string
 }>
 export default function(props: Props) {
   const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<boolean>
@@ -15,7 +16,7 @@ export default function(props: Props) {
     props.onChange && props.onChange(model.value);
   }
 
-  return <div className={() => ['switch', model.value ? 'is-open' : '']} onclick={handleCilik}>
+  return <div className={() => ['switch', model.value ? 'is-open' : '', props.className]} onclick={handleCilik}>
     <div className='round'></div>
   </div>
 }

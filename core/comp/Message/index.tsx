@@ -5,7 +5,7 @@ import './index.scss';
 
 const queue    = new Set();
 const ANI_TIME = 400;
-let topCount   = 0;
+let   topCount = 0;
 
 type Props = PropsType<{
   message:   string
@@ -14,9 +14,9 @@ type Props = PropsType<{
 }>
 function Comp(props: Props) {
 
-  const hidden = ref(true);
-  const elRef  = ref<HTMLElement>();
-  let   timer  = null;
+  const visible = ref(true);
+  const elRef   = ref<HTMLElement>();
+  let   timer   = null;
 
   const id = Symbol('id');
   queue.add(id);
@@ -26,15 +26,16 @@ function Comp(props: Props) {
     const height = elRef.value.offsetHeight;
     topCount += height + 10;
     await delay(100);
-    hidden.value = false;
+    visible.value = false;
     anewClose();
   })
 
   async function close() {
-    hidden.value = true;
+    visible.value = true;
     await delay(ANI_TIME);
     queue.delete(id);
     if (queue.size === 0) {
+      topCount = 0;
       wrapEl.remove();
     } else {
       const sort = Number(elRef.value.dataset.sort);
@@ -52,7 +53,7 @@ function Comp(props: Props) {
 
   function cancelClose() {
     clearTimeout(timer);
-    hidden.value = false;
+    visible.value = false;
   }
   
   function anewClose() {
@@ -62,7 +63,7 @@ function Comp(props: Props) {
 
   return <div
     ref={elRef}
-    className={() => ['message', props.type, hidden.value && 'hidden']}
+    className={() => ['message', props.type, visible.value && 'hidden']}
     data-sort={queue.size - 1 + ''}
     style={`--time: ${ANI_TIME / 1000}s`}
     onmouseenter={cancelClose}

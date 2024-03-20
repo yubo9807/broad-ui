@@ -3,7 +3,7 @@ import CodeEdit from "~/core/comp/CodeEdit";
 
 export default () => {
   const node = useComponent(CodeEdit, {
-    defaultValue: `package main`,
+    model: `package main`,
     toHtml(val) {
       return `<code>${val}</code>`;
     }

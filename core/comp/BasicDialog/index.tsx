@@ -7,6 +7,7 @@ type Props = PropsType<{
   model:         boolean | RefImpl<boolean>
   className?:    string
   isModalClose?: boolean  // 点击蒙层关闭，默认为 true
+  mounted?:      (el: HTMLElement) => void
 }>
 export default function(props: Props) {
 
@@ -42,7 +43,7 @@ export default function(props: Props) {
   }
 
   return <dialog ref={dialogRef} className='dialog' onmousedown={mouseDown} onclose={close}>
-    <div className={['wrap', props.className]}>
+    <div className={['wrap', props.className]} created={props.mounted}>
       {props.children}
     </div>
   </dialog>
