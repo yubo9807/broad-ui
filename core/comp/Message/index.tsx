@@ -63,7 +63,7 @@ function Comp(props: Props) {
 
   return <div
     ref={elRef}
-    className={() => ['message', props.type, visible.value && 'hidden']}
+    className={() => ['br-message', props.type, visible.value && 'hidden']}
     data-sort={queue.size - 1 + ''}
     style={`--time: ${ANI_TIME / 1000}s`}
     onmouseenter={cancelClose}
@@ -78,7 +78,7 @@ let wrapEl: HTMLElement = null;
 function Message(config: Props) {
   if (!isBrowser()) return;
   const el = render(<Comp {...config} />);
-  wrapEl ??= render(<div className='message-wrap'></div>);
+  wrapEl ??= render(<div className='be-message-wrap'></div>);
   wrapEl.appendChild(el);
   document.body.appendChild(wrapEl);
 }

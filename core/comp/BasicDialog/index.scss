@@ -1,20 +1,12 @@
-.dialog:modal{
+.br-dialog:modal{
   border: none;
   outline: none;
   padding: 0;
 }
-.dialog:-internal-dialog-in-top-layer::backdrop{
+.br-dialog:-internal-dialog-in-top-layer::backdrop{
   background: rgba(0,0,0,.6);
 }
-.wrap{
+.br-dialog-wrap{
   min-width: 200px;
   min-height: 50px;
-}
-.close-icon{
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  color: white;
 }

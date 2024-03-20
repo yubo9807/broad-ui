@@ -2,12 +2,12 @@ import { h, PropsType, ref } from "pl-vue";
 import { RefImpl } from "pl-vue/lib/reactivity/ref";
 import { OptionValue } from "./option";
 import { isObject } from "../../utils";
-import './module.scss';
+import './index.scss';
 
 type Props = PropsType<{
-  model?:        OptionValue | RefImpl<OptionValue>
-  onChange?:     (val: OptionValue) => void
-  className?:    string
+  model?:     OptionValue | RefImpl<OptionValue>
+  onChange?:  (val: OptionValue) => void
+  className?: string
 }>
 export default function(props: Props) {
 
@@ -21,7 +21,7 @@ export default function(props: Props) {
     props.onChange && props.onChange(model.value);
   }
 
-  return <select className={['comp-select', props.className]} onchange={handleChange}>
+  return <select className={['br-select', props.className]} onchange={handleChange}>
     {props.children}
   </select>
 }

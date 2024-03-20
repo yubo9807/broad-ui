@@ -42,7 +42,6 @@ export default function(props: PartitionProps) {
     const rect = wrapEl.value.getBoundingClientRect()
     if (props.type === 'horizontal') {
       let skewX = props.main === 1 ? e.clientX - rect.left : rect.width - e.clientX + rect.left;
-      console.log(skewX);
       setPartial(skewX + 'px');
     } else {
       const skewY = props.main === 1 ? e.clientY - rect.top : rect.height - e.clientY + rect.top;
@@ -65,7 +64,7 @@ export default function(props: PartitionProps) {
   defineExpose(expose);
 
   const isMain = props.main === 1;
-  return <div ref={wrapEl} className={[`partition ${props.type}`, props.className]} style={() => `--skew: ${partial()}`}>
+  return <div ref={wrapEl} className={[`br-partition ${props.type}`, props.className]} style={() => `--skew: ${partial()}`}>
     <div
       className={['item', isMain ? 'main' : 'vice']}
       created={isMain ? props.areaMain : props.areaVice}

@@ -10,6 +10,7 @@ export type CodeEditProps = PropsType<{
   isCopy?:    boolean                     // 是否可以进行复制
   onCopy?:    (val: string) => void       // 复制成功后的回调
   onKeyDown?: (e: KeyboardEvent) => void  // 按键按下事件
+  className?: string
 }>
 export default function(props: CodeEditProps) {
 
@@ -28,7 +29,7 @@ export default function(props: CodeEditProps) {
     props.onCopy && props.onCopy(value);
   }
 
-  return <div className='code-edit'>
+  return <div className={['br-code-edit', props.className]}>
     <ul className='row-num'>
       {() => new Array(rowNum.value).fill(1).map((_, i) => <li>{i + 1}</li>)}
     </ul>

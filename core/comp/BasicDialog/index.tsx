@@ -42,8 +42,8 @@ export default function(props: Props) {
     }
   }
 
-  return <dialog ref={dialogRef} className='dialog' onmousedown={mouseDown} onclose={close}>
-    <div className={['wrap', props.className]} created={props.mounted}>
+  return <dialog ref={dialogRef} className='br-dialog' onmousedown={mouseDown} onclose={close}>
+    <div className={['br-dialog-wrap', props.className]} created={props.mounted}>
       {props.children}
     </div>
   </dialog>

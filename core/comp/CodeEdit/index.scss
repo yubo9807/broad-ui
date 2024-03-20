@@ -1,5 +1,7 @@
-.code-edit{
+.br-code-edit{
   --row-width: 30px;
+  --row-bg-color: #F5F7FA;
+  --row-font-color: #acadae;
   display: flex;
   border-radius: 4px;
   overflow: hidden;
@@ -10,7 +12,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    color: #63687C;
+    color: var(--row-font-color);
     >li{
       width: 100%;
       line-height: 2;
@@ -22,7 +24,7 @@
   .content{
     position: relative;
     width: calc(100% - var(--row-width));
-    background: #F5F7FA;
+    background: var(--row-bg-color);
     overflow-x: auto;
     > textarea, .mark{
       font-family: Consolas,Monaco,Andale Mono,monospace;

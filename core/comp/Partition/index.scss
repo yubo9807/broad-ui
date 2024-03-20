@@ -1,11 +1,11 @@
-.partition{
+.br-partition{
   --line-size: 3px;
   height: 100%;
   > .item{
     --gap: calc(var(--line-size) / 2);
   }
   > .line{
-    background: #eee;
+    background: #eaecef;
   }
   &.horizontal{
     display: flex;

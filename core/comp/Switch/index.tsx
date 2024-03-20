@@ -16,7 +16,7 @@ export default function(props: Props) {
     props.onChange && props.onChange(model.value);
   }
 
-  return <div className={() => ['switch', model.value ? 'is-open' : '', props.className]} onclick={handleCilik}>
+  return <div className={() => ['br-switch', model.value ? 'is-open' : '', props.className]} onclick={handleCilik}>
     <div className='round'></div>
   </div>
 }

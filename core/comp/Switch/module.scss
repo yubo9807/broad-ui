@@ -1,7 +1,7 @@
-.switch{
+.br-switch{
   --height: 18px;
   --width: 46px;
-  --color: #1a1a1a;
+  --color: #404040;
   display: inline-block;
   width: var(--width);
   height: var(--height);
@@ -22,7 +22,7 @@
   }
 
   &.is-open{
-    --color: green;
+    --color: #52c41a;
     .round{
       transform: translateX(calc(var(--width) - var(--size) - var(--gap) * 2));
     }

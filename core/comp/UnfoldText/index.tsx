@@ -66,7 +66,7 @@ export default function(props: UnfoldTextProps) {
     }
   })
 
-  return <div ref={wrapRef} className='unfold-text'>
+  return <div ref={wrapRef} className='br-unfold-text'>
     {() => origin.value
       ? <div>{() => model.value}</div>
       : <div className={() => ['wrap', !isOpen.value && 'is-open']} style={`--row: ${props.row}`}>
