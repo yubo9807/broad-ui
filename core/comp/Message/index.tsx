@@ -42,8 +42,11 @@ function Comp(props: Props) {
       const height = elRef.value.offsetHeight;
       topCount -= height + 10;
       elRef.value.remove();
+
+      // 移动剩余的元素
       [...wrapEl.children].forEach((val: HTMLElement, index) => {
         if (index < sort) return;
+        if (val.dataset.lock === 'true') return;
         const top = parseInt(val.style.top);
         val.style.top = top - height - 10 + 'px';
         val.dataset.sort = index + '';
@@ -52,11 +55,13 @@ function Comp(props: Props) {
   }
 
   function cancelClose() {
+    elRef.value.dataset.lock = 'true';
     clearTimeout(timer);
     visible.value = false;
   }
   
   function anewClose() {
+    elRef.value.dataset.lock = 'false';
     if (props.duration === null) return;
     timer = setTimeout(close, props.duration || 4000);
   }
@@ -78,7 +83,7 @@ let wrapEl: HTMLElement = null;
 function Message(config: Props) {
   if (!isBrowser()) return;
   const el = render(<Comp {...config} />);
-  wrapEl ??= render(<div className='be-message-wrap'></div>);
+  wrapEl ??= render(<div className='br-message-wrap'></div>);
   wrapEl.appendChild(el);
   document.body.appendChild(wrapEl);
 }
@@ -88,7 +93,7 @@ Message.success = (message: string) => Message({ message, type: 'success' });
 Message.error = (message: string) => Message({ message, type: 'error' });
 Message.warning = (message: string) => Message({ message, type: 'warning' });
 Message.closeAll = async () => {
-  if (!isBrowser() && !wrapEl) return;
+  if (!isBrowser() || !wrapEl) return;
   [...wrapEl.children].forEach(val => {
     val.classList.add('hidden');
     val.remove();

@@ -6,12 +6,15 @@
 }
 
 .br-message{
+  --color: #909090;
   position: absolute;
   left: 50%;
   min-width: 220px;
   transform: translateX(-50%);
-  background: rgba(0,0,0,.7);
-  color: white;
+  background: white;
+  border: 1px solid var(--color);
+  color: var(--color);
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
   padding: 10px;
   border-radius: 8px;
   text-align: justify;
@@ -36,12 +39,12 @@
     opacity: 0;
   }
   &.error{
-    background: rgba(184, 0, 0, 0.8);
+    --color: #ff4d4f;
   }
   &.success{
-    background: rgba(47, 189, 44, 0.8);
+    --color: #52c41a;
   }
   &.warning{
-    background: rgba(239, 179, 0, 0.8);
+    --color: #faad14;
   }
 }

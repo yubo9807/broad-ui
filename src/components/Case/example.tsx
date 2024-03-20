@@ -10,6 +10,7 @@ import env from '~/config/env';
 import { Item } from ".";
 import { isPhone } from "@/utils/judge";
 import useScreenStore from '@/store/screen';
+import Message from "~/core/comp/Message";
 
 class CodeConversion2 extends CodeConversion {
   constructor() {
@@ -72,7 +73,7 @@ export default function(row: Item) {
         nextTick(() => {
           const nodes = markdownRef.value.querySelectorAll('pre code');
           [...nodes].forEach((el: HTMLElement) => {
-            const node = render(<CodeEdit model={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
+            const node = render(<HignOrderCodeEdit model={el.innerText.trim()} />);
             markdownRef.value.replaceChild(node, el.parentElement);
           })
         })
@@ -99,7 +100,7 @@ export default function(row: Item) {
         </div>
         <div className={style.code}>
           <h2>Code</h2>
-          {() => code.value && <CodeEdit model={code.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+          {() => code.value && <HignOrderCodeEdit model={code.value} />}
           <a className={style.originCodeBtn} onclick={() => visible.value = true}>源码</a>
         </div>
         <div ref={markdownRef} className='markdown' innerHTML={() => readmeHtml.value}></div>
@@ -109,7 +110,7 @@ export default function(row: Item) {
             <h3>源码</h3>
           </header>
           <main>
-            {() => originCode.value && <CodeEdit model={originCode.value} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />}
+            {() => originCode.value && <HignOrderCodeEdit model={originCode.value} />}
           </main>
           <span className={style.close} onclick={() => visible.value = false}>×</span>
         </Dialog>
@@ -118,4 +119,17 @@ export default function(row: Item) {
 
     resolve({ default: Fun })
   })
+}
+
+type CodeEditProps = {
+  model: string
+}
+function HignOrderCodeEdit(props: CodeEditProps) {
+  return <CodeEdit
+    model={props.model}
+    isEdit={false}
+    isCopy={true}
+    toHtml={val => conversion.output(val)}
+    onCopy={() => Message.success('复制成功')}
+  />
 }

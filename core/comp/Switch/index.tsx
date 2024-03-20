@@ -1,7 +1,7 @@
 import { h, PropsType, ref } from "pl-vue"
 import { RefImpl } from "pl-vue/lib/reactivity/ref"
 import { isObject } from "../../utils"
-import './module.scss'
+import './index.scss'
 
 type Props = PropsType<{
   model?:     boolean | RefImpl<boolean>
