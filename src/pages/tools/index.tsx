@@ -14,6 +14,7 @@ export default function(props: PagePropsType) {
     { path: 'fullScreen', name: '全屏控制', },
     { path: 'eventEmitter', name: '事件触发形式', },
     { path: 'funcOverload', name: '函数重载', },
+    { path: 'inlay', name: '字符镶嵌', },
   ]
   list.forEach(val => {
     val.dom = import(`./example/${val.path}/dom.ts`);

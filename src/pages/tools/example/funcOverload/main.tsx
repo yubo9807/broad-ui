@@ -1,5 +1,5 @@
 import { h } from "pl-vue"
-import { FuncOverload } from "~/core/tools/funcOverload"
+import { FuncOverload } from "~/core/tools"
 
 export default () => {
 
