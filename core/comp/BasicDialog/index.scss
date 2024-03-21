@@ -1,12 +1,14 @@
-.br-dialog:modal{
-  border: none;
-  outline: none;
-  padding: 0;
+.br-basic-dialog{
+  &:modal{
+    border: none;
+    outline: none;
+    padding: 0;
+  }
+  &:-internal-dialog-in-top-layer::backdrop{
+    background: rgba(0,0,0,.6);
+  }
 }
-.br-dialog:-internal-dialog-in-top-layer::backdrop{
-  background: rgba(0,0,0,.6);
-}
-.br-dialog-wrap{
+.br-basic-dialog-wrap{
   min-width: 200px;
   min-height: 50px;
 }
