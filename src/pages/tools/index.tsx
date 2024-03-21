@@ -12,6 +12,7 @@ export default function(props: PagePropsType) {
     { path: 'falls', name: '瀑布流布局', },
     { path: 'codeConversion', name: '自定义语言高亮', },
     { path: 'fullScreen', name: '全屏控制', },
+    { path: 'eventEmitter', name: '订阅发布事件', },
     // { path: 'imageCompress', name: '图片压缩', },
     // { path: 'amountUppercase', name: '数字金额大写', },
   ]
