@@ -1,4 +1,4 @@
-import { h, onMounted, ref, render, PropsType } from "pl-vue";
+import { h, onMounted, ref, render, PropsType, recycleDepend } from "pl-vue";
 import { isBrowser } from "pl-vue/lib/utils";
 import { delay } from "../../utils/async";
 import './index.scss';
@@ -31,27 +31,37 @@ function Comp(props: Props) {
   })
 
   async function close() {
-    visible.value = true;
-    await delay(ANI_TIME);
-    queue.delete(id);
+    // 队列为空，直接删除容器
     if (queue.size === 0) {
       topCount = 0;
       wrapEl.remove();
-    } else {
-      const sort = Number(elRef.value.dataset.sort);
-      const height = elRef.value.offsetHeight;
-      topCount -= height + 10;
-      elRef.value.remove();
-
-      // 移动剩余的元素
-      [...wrapEl.children].forEach((val: HTMLElement, index) => {
-        if (index < sort) return;
-        if (val.dataset.lock === 'true') return;
-        const top = parseInt(val.style.top);
-        val.style.top = top - height - 10 + 'px';
-        val.dataset.sort = index + '';
-      })
+      return;
     }
+
+    // 元素可能被提前移除
+    const height = elRef.value.offsetHeight;
+    if (height === 0) {
+      recycleDepend(visible, elRef);  // 回收内存
+      return;
+    }
+
+    visible.value = true;
+    await delay(ANI_TIME);
+    queue.delete(id);
+
+    const sort = Number(elRef.value.dataset.sort);  // 在删除前记录排序
+    topCount -= height + 10;
+    if (topCount < 0) topCount = 0;
+    elRef.value.remove();
+
+    // 移动剩余的元素
+    [...wrapEl.children].forEach((val: HTMLElement, index) => {
+      if (index < sort) return;
+      if (val.dataset.lock === 'true') return;
+      const top = parseInt(val.style.top);
+      val.style.top = top - height - 10 + 'px';
+      val.dataset.sort = index + '';
+    })
   }
 
   function cancelClose() {
@@ -80,12 +90,31 @@ function Comp(props: Props) {
 }
 
 let wrapEl: HTMLElement = null;
+let parent: Element = null;
+let backupParent: Element = null;
+
 function Message(config: Props) {
   if (!isBrowser()) return;
   const el = render(<Comp {...config} />);
-  wrapEl ??= render(<div className='br-message-wrap'></div>);
+  const dialogs = document.querySelectorAll('dialog[open]');
+  const dialog = dialogs[dialogs.length - 1];
+  if (dialog) {
+    parent = dialog;
+  } else {
+    parent = document.body;
+  }
+  if (!wrapEl) {
+    wrapEl = render(<div className='br-message-wrap'></div>);
+    parent.appendChild(wrapEl);
+    backupParent = parent;
+  } else {
+    if (parent !== backupParent) {
+      Message.closeAll();
+      backupParent = parent;
+    }
+    parent.appendChild(wrapEl);
+  }
   wrapEl.appendChild(el);
-  document.body.appendChild(wrapEl);
 }
 
 Message.info = (message: string) => Message({ message, type: 'info' });
