@@ -1,0 +1,1 @@
+const t="\n## Methods\n\n| 方法名 | 说明 | 参数 | 备注 |\n| --- | --- | --- | --- |\n| on | 接收消息 | `(type, callback)` | - |\n| off | 关闭接收消息通道 | `(type)` | - |\n| emit | 发送消息 | `(type, data)` | - |\n| once | 只接收一次消息 | `(type, callback)` | - |\n| static wait | 给元素注册等待事件 | `(ele)` | - |\n";export{t as default};

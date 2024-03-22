@@ -1,0 +1,1 @@
+import{l as t}from"./pl-vue-a616274f.js";import{S as e}from"./index-59060463.js";import"./index-6cd12340.js";import"./marked-d5c18544.js";const d=()=>{const o=t(e);document.getElementById("container").appendChild(o)};export{d as default};

@@ -1,0 +1,1 @@
+import{C as o}from"./chartWave-75be6d69.js";const r=()=>{const n=document.getElementById("container"),t=new o({el:n,percentage:30,size:300});t._canvas.style.borderRadius="50%",setInterval(()=>{const e=Math.random()*100;t.option.percentage=e,t.option.color=e>60?"#ffaa00":"#0080ff"},2e3)};export{r as default};
