@@ -1,11 +1,11 @@
-type JSTypeMap = {
-  string: string
-  number: number
-  boolean: boolean
-  object: object
-  function: Function
-  symbol: symbol
-  bigint: bigint
+interface JSTypeMap {
+  string:    string
+  number:    number
+  boolean:   boolean
+  object:    object
+  function:  Function
+  symbol:    symbol
+  bigint:    bigint
   undefined: undefined
 }
 type JSTypeName = keyof JSTypeMap

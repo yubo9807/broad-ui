@@ -10,7 +10,7 @@ export type Option = {
 export class Fulls {
 
   option: Option
-  constructor(option: Option) {
+  constructor(option: Option = {}) {
     const { column, rowGap, colGap, el } = option;
     this.option = {
       column: column || 5,

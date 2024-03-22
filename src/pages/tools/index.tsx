@@ -8,14 +8,14 @@ const NewCase = deepClone(Case);
 export default function(props: PagePropsType) {
 
   const list: Item[] = [
-    { path: 'chartWave', name: '波浪效果', },
     { path: 'falls', name: '瀑布流布局', },
+    { path: 'chartWave', name: '波浪效果', },
     { path: 'codeConversion', name: '自定义语言高亮', },
     { path: 'fullScreen', name: '全屏控制', },
     { path: 'taskScheduling', name: '任务调度控制', },
     { path: 'eventEmitter', name: '事件触发形式', },
     { path: 'funcOverload', name: '函数重载', },
-    { path: 'inlay', name: '字符镶嵌', },
+    // { path: 'inlay', name: '字符镶嵌', },
   ]
   list.forEach(val => {
     val.dom = import(`./example/${val.path}/dom.ts`);
