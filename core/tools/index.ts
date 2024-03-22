@@ -5,3 +5,5 @@ export * from './fullScreen';
 export * from './eventEmitter';
 export * from './funcOverload';
 export * from './inlay';
+export * from './taskScheduling';
+

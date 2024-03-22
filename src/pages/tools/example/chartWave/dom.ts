@@ -1,12 +1,13 @@
 import { ChartWait } from "~/core/tools";
 
 export default () => {
-  const wrapEl = document.getElementById('container')
+  const container = document.getElementById('container');
   const wait = new ChartWait({
-    el: wrapEl,
+    el: container,
     percentage: 30,
-    size: [wrapEl.clientWidth, 300],
+    size: 300,
   })
+  wait._canvas.style.borderRadius = '50%';
 
   setInterval(() => {
     const num = Math.random() * 100;
