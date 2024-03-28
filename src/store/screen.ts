@@ -1,4 +1,4 @@
-import { createStore } from 'pl-vue/lib/store';
+import { defineStore } from 'pl-vue/lib/store';
 
 const KEY = 'isPlVue';
 const state = {
@@ -12,4 +12,4 @@ const actions = {
   }
 }
 
-export default createStore(state, actions);
+export default defineStore({ state, actions });

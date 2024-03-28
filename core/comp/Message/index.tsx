@@ -1,4 +1,4 @@
-import { h, onMounted, ref, render, PropsType, recycleDepend } from "pl-vue";
+import { h, onMounted, ref, PropsType, recycleDepend, createApp, render } from "pl-vue";
 import { isBrowser } from "pl-vue/lib/utils";
 import { delay } from "../../utils/async";
 import './index.scss';

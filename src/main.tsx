@@ -1,5 +1,5 @@
-import { h, Fragment, render, ref, watch, onMounted } from "pl-vue";
-import { Router, Route, initRouter, Link, useRoute } from "pl-vue/lib/router";
+import { h, Fragment, ref, watch, onMounted, createApp } from "pl-vue";
+import { Router, Route, Link, useRoute, createRouter } from "pl-vue/lib/router";
 import "./styles/index.scss";
 import style from './style.module.scss';
 import env from "~/config/env";
@@ -12,9 +12,6 @@ import Option from "~/core/comp/Select/option";
 import useScreenStore from '@/store/screen';
 
 function App() {
-  initRouter({
-    mode: 'hash',
-  });
 
   const open = ref(false);
   const route = useRoute();
@@ -74,4 +71,9 @@ function App() {
   </>
 }
 
-document.body.appendChild(render(<App />));
+export const app = createApp();
+const router = createRouter({
+  mode: 'hash',
+});
+app.use(router);
+document.body.appendChild(app.render(<App />));
