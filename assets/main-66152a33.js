@@ -1,1 +1,0 @@
-import{r as a,o,h as n}from"./pl-vue-a616274f.js";import{C as r}from"./chartWave-75be6d69.js";function p(){const e=a();return o(()=>{const t=new r({el:e.value,size:[e.value.clientWidth,300],percentage:30});setInterval(()=>{t.option.percentage=Math.random()*100,t.option.color=t.option.percentage>60?"#ffaa00":"#0080ff"},2e3)}),n("div",{ref:e})}export{p as default};

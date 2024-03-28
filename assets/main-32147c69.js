@@ -1,0 +1,1 @@
+import{r,h as o}from"./pl-vue-6d352d3f.js";import{D as t}from"./index-2ae9f68f.js";import"./marked-d5c18544.js";const m=()=>{const l=r(!1);return o("div",null,o("button",{onclick:()=>l.value=!0},"显示弹窗"),o(t,{model:l},"hello"))};export{m as default};
