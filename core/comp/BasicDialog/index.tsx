@@ -1,5 +1,4 @@
-import { PropsType, watch, h, onMounted, ref } from "pl-vue"
-import type { RefImpl } from "pl-vue/lib/reactivity/ref";
+import { PropsType, watch, h, onMounted, ref, RefImpl } from "pl-vue"
 import { isObject } from "../../utils";
 import './index.scss';
 

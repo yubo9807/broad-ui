@@ -1,5 +1,4 @@
-import { h, PropsType, ref } from "pl-vue";
-import { RefImpl } from "pl-vue/lib/reactivity/ref";
+import { h, PropsType, ref, RefImpl } from "pl-vue";
 import { OptionValue } from "./option";
 import { isObject } from "../../utils";
 import './index.scss';

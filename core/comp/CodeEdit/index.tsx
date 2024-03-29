@@ -1,5 +1,4 @@
-import { PropsType, computed, h, ref } from 'pl-vue';
-import { RefImpl } from 'pl-vue/lib/reactivity/ref';
+import { PropsType, computed, h, ref, RefImpl } from 'pl-vue';
 import { copyToBoard, isObject } from '../../utils';
 import './index.scss';
 
