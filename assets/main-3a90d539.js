@@ -1,0 +1,1 @@
+import{h as r}from"./pl-vue-6d352d3f.js";import{a as m}from"./index-83ef8953.js";import"./marked-d5c18544.js";const d=()=>{const o="package main";function t(e){return`<code>${e}</code>`}return r(m,{model:o,toHtml:t})};export{d as default};

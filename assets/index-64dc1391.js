@@ -1,5 +1,4 @@
-const e=`import { h, PropsType, ref } from "pl-vue"
-import { RefImpl } from "pl-vue/lib/reactivity/ref"
+const o=`import { h, PropsType, ref, RefImpl } from "pl-vue"
 import { isObject } from "../../utils"
 import './index.scss'
 
@@ -20,4 +19,4 @@ export default function(props: Props) {
     <div className='round'></div>
   </div>
 }
-`;export{e as default};
+`;export{o as default};

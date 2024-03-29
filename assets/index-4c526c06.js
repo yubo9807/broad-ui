@@ -1,5 +1,4 @@
-const e=`import { PropsType, defineExpose, h, onMounted, ref, watch } from "pl-vue"
-import { RefImpl } from "pl-vue/lib/reactivity/ref"
+const e=`import { PropsType, defineExpose, h, onMounted, ref, watch, RefImpl } from "pl-vue"
 import { extractNumber, isObject } from "../../utils"
 import './index.scss'
 
