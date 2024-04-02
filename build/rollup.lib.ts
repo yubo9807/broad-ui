@@ -48,6 +48,7 @@ components.forEach(async val => {
   const bundle = await rollup({
     input: `core/comp/${val}/index.tsx`,
     external(source, importer, isResolved) {
+      if (source.endsWith('.scss')) return false;
       return true;
     },
     plugins: [
@@ -55,7 +56,7 @@ components.forEach(async val => {
         tsconfig: 'tsconfig.json',
       }),
       scss({
-        fileName: 'index.css',
+        fileName: `index.css`,
       }),
       addImport("import './index.css';"),
       // copy({
