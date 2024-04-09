@@ -7,8 +7,8 @@
 | type | 分割方向 | `'horizontal' \| 'vertical'` | horizontal | - |
 | main | 主区域 | `1 \| 2` | 1 | type 为 horizontal 时，1 为左，2为右；type 为 vertical 时，1 为上，2为下 |
 | className | - | `string` | - | |
-| areaMain | 主区域 dom 控制 | `(el: HTMLElement) => void` | - | 该函数在 dom 还没有挂载时触发（areaVice 也一样） |
-| areaVice | 副区域 dom 控制 | `(el: HTMLElement) => void` | - | |
+| childMain | 主区域 dom 控制 | `(el: HTMLElement) => void` | - | 该函数在 dom 还没有挂载时触发（childArea 也一样） |
+| childArea | 副区域 dom 控制 | `(el: HTMLElement) => void` | - | |
 
 ## Methods
 

@@ -1,6 +1,6 @@
 import { h, onMounted, ref, PropsType, recycleDepend, render } from "pl-vue";
 import { isBrowser } from "pl-vue/lib/utils";
-import { delay } from "../../utils/async";
+import { delay } from "../../utils";
 import './index.scss';
 
 const queue    = new Set();

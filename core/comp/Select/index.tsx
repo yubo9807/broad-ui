@@ -1,16 +1,15 @@
-import { h, PropsType, ref, RefImpl } from "pl-vue";
+import { h, isRef, PropsType, ref, RefImpl } from "pl-vue";
 import { OptionValue } from "./option";
-import { isObject } from "../../utils";
 import './index.scss';
 
-type Props = PropsType<{
+type SelectProps = PropsType<{
   model?:     OptionValue | RefImpl<OptionValue>
   onChange?:  (val: OptionValue) => void
   className?: string
 }>
-export default function(props: Props) {
+export default function(props: SelectProps) {
 
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<OptionValue>;
+  const model = isRef(props.model) ? props.model : ref(props.model);
   props.children.forEach(val => {
     val.attrs.selected = () => model.value === val.attrs.value;
   })

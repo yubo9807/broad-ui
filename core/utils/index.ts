@@ -4,8 +4,8 @@ import { AnyObj } from 'pl-vue/lib/utils';
 export * from './number';
 export * from './string';
 export * from './array';
-export * from './judge';
 export * from './type';
+export * from './async';
 
 /**
  * 简化 useComponent

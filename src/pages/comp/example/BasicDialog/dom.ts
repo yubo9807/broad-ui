@@ -5,7 +5,7 @@ export default () => {
   const visible = ref(false);
   const node = useComponent(BasicDialog, {
     model: visible,
-    mounted(el) {
+    children(el) {
       el.innerText = `hello`
     }
   });

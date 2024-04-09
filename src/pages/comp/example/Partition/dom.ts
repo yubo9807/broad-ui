@@ -3,10 +3,10 @@ import { useComponent } from 'pl-vue'
 
 export default () => {
   const node = useComponent(Partition, {
-    areaMain(el) {
+    childMain(el) {
       el.innerText = '固定区域';
     },
-    areaVice(el) {
+    childArea(el) {
       el.innerText = '剩余区域';
     }
   });

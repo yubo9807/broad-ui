@@ -1,13 +1,14 @@
 import { PropsType, createSignal, defineExpose, h, ref } from "pl-vue";
+import { ChildMount, Mount } from "~/core/utils";
 import './index.scss';
 
 export type PartitionProps = PropsType<{
-  main?:      1 | 2
   size?:      string                     // main一边默认大小
   type?:      'horizontal' | 'vertical'  // 方向
+  main?:      1 | 2                      // 主区域
   className?: string
-  areaMain?:  (el: HTMLElement) => void
-  areaVice?:  (el: HTMLElement) => void
+  childMain?: ChildMount
+  childArea?: ChildMount
 }>
 export type PartitionExpose = {
   setPartial: (value: string) => void
@@ -67,12 +68,12 @@ export default function(props: PartitionProps) {
   return <div ref={wrapEl} className={[`br-partition ${props.type}`, props.className]} style={() => `--skew: ${partial()}`}>
     <div
       className={['item', isMain ? 'main' : 'vice']}
-      created={isMain ? props.areaMain : props.areaVice}
-    >{props.children[0]}</div>
+      created={(isMain ? props.childMain : props.childArea) as Mount}
+    >{isMain ? props.childMain : props.childArea}</div>
     <div className="line" onmousedown={onMousedown}></div>
     <div
       className={['item', isMain ? 'vice' : 'main']}
-      created={isMain ? props.areaVice : props.areaMain}
-    >{props.children[1]}</div>
+      created={(isMain ? props.childArea : props.childMain) as Mount}
+    >{isMain ? props.childArea : props.childMain}</div>
   </div>
 }

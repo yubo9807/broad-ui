@@ -7,8 +7,8 @@
 | row | 行数 | `number` | 2 | - |
 | unfold | 展开文本 | `string` | 展开 | - |
 | fold | 收起文本 | `string` | 收起 | - |
-| unfoldEl | 展开元素控制 | `(el: HTMLElement) => void` | - | 如果需要更换图标请直接操作 DOM |
-| foldEl | 收起元素控制 | `(el: HTMLElement) => void` | - | - |
+| childUnfold | 展开元素控制 | `(el: HTMLElement) => void` | - | 如果需要更换图标请直接操作 DOM |
+| childFold | 收起元素控制 | `(el: HTMLElement) => void` | - | - |
 
 ## Methods
 

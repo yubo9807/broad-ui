@@ -1,14 +1,14 @@
-import { PropsType, defineExpose, h, onMounted, ref, watch, RefImpl } from "pl-vue"
-import { extractNumber, isObject } from "../../utils"
+import { PropsType, defineExpose, h, onMounted, ref, watch, RefImpl, isRef } from "pl-vue"
+import { ChildMount, Mount, extractNumber } from "../../utils"
 import './index.scss'
 
 export type UnfoldTextProps = PropsType<{
-  model:     string | RefImpl<string>
-  row?:      number
-  unfold?:   string
-  fold?:     string
-  unfoldEl?: (el: HTMLElement) => void
-  foldEl?:   (el: HTMLElement) => void
+  model:        string | RefImpl<string>
+  row?:         number
+  unfold?:      string
+  fold?:        string
+  childUnfold?: ChildMount
+  childFold?:   ChildMount
 }>
 export type UnfoldTextExpose = {
   setModel: (str: string) => void
@@ -23,7 +23,7 @@ export default function(props: UnfoldTextProps) {
     fold:   '收起',
   }, props);
 
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<string>;
+  const model = isRef(props.model) ? props.model : ref(props.model);
   const origin = ref(false);
   const isOpen = ref(false);
 
@@ -70,10 +70,10 @@ export default function(props: UnfoldTextProps) {
       ? <div>{() => model.value}</div>
       : <div className={() => ['wrap', !isOpen.value && 'is-open']} style={`--row: ${props.row}`}>
         {() => !isOpen.value && <div className="btn">...
-          <span className="open" onclick={() => isOpen.value = true} created={props.unfoldEl}>{props.unfold}</span>
+          <span className="open" onclick={() => isOpen.value = true} created={props.childUnfold as Mount}>{props.unfold}</span>
         </div>}
         <div ref={contentRef} className="content">{() => model.value}</div>
-        {() => isOpen.value && <div className="close" onclick={() => isOpen.value = false} created={props.foldEl}>{props.fold}</div>}
+        {() => isOpen.value && <div className="close" onclick={() => isOpen.value = false} created={props.childFold as Mount}>{props.fold}</div>}
       </div>}
   </div>
 }

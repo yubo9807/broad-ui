@@ -14,6 +14,7 @@ export default function(props: PagePropsType) {
     { path: 'BasicDialog', name: '系统弹窗', },
     { path: 'Switch', name: '开关', },
     { path: 'Message', name: '消息提示', },
+    { path: 'Loading', name: 'Loading', },
   ]
   list.forEach(val => {
     val.dom = import(`./example/${val.path}/dom.ts`);

@@ -1,5 +1,5 @@
-import { PropsType, computed, h, ref, RefImpl } from 'pl-vue';
-import { copyToBoard, isObject } from '../../utils';
+import { PropsType, computed, h, ref, RefImpl, isRef } from 'pl-vue';
+import { copyToBoard } from '../../utils';
 import './index.scss';
 
 export type CodeEditProps = PropsType<{
@@ -13,7 +13,7 @@ export type CodeEditProps = PropsType<{
 }>
 export default function(props: CodeEditProps) {
 
-  const model = (isObject(props.model) ? props.model : ref(props.model)) as RefImpl<string>;
+  const model = isRef(props.model) ? props.model : ref(props.model);
   const html = computed(() => props.toHtml ? props.toHtml(model.value) : model.value);
   const rowNum = computed(() => model.value.split('\n').length);
 
