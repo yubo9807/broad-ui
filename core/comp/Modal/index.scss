@@ -1,0 +1,29 @@
+.br-modal{
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+  &:-internal-dialog-in-top-layer::backdrop{
+    background: transparent;
+  }
+  > .br-basic-dialog-wrap{
+    width: 300px;
+    padding: 14px;
+    > header{
+      display: flex;
+      justify-content: space-between;
+    }
+    > footer{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+  }
+
+  .title{
+    font-size: 16px;
+  }
+  .icon-close{
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+}
