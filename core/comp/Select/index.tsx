@@ -1,11 +1,12 @@
-import { h, isRef, PropsType, ref, RefImpl } from "pl-vue";
+import { Children, h, isRef, PropsType, ref, RefImpl } from "pl-vue";
 import { OptionValue } from "./option";
 import './index.scss';
 
 type SelectProps = PropsType<{
   model?:     OptionValue | RefImpl<OptionValue>
   onChange?:  (val: OptionValue) => void
-  className?: string
+  className?: string | string[]
+  children?:  Children
 }>
 export default function(props: SelectProps) {
 

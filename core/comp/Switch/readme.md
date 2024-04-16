@@ -5,7 +5,7 @@
 | --- | --- | --- | --- | --- |
 | model | 开关 | `boolean \| RefImpl<boolean>` | - | - |
 | onChange | 开关发生变化是回调 | `(val: boolean) => void` | - | - |
-| className | - | `string` | - | - |
+| className | - | `string \| string[]` | - | - |
 
 ## Methods
 

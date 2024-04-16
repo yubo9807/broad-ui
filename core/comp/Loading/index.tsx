@@ -4,7 +4,7 @@ import './index.scss'
 
 export type LoadingProps = PropsType<{
   model:      boolean | RefImpl<boolean>
-  className?: string
+  className?: string | string[]
   childIcon?: ChildMount
   childTips?: ChildMount
 }>

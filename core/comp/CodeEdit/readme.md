@@ -9,4 +9,4 @@
 | isCopy | 是否显示复制按钮 | `boolean` | false | - |
 | onCopy | 复制后的回调 | `(val: string) => void` | - | - |
 | onKeyDown | 按键按下事件 | `(e: KeyboardEvent) => void` | - | 可以自定义一些快捷键操作 |
-| className | - | `string` | - | - |
+| className | - | `string \| string[]` | - | - |

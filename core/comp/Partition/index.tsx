@@ -6,7 +6,7 @@ export type PartitionProps = PropsType<{
   size?:      string                     // main一边默认大小
   type?:      'horizontal' | 'vertical'  // 方向
   main?:      1 | 2                      // 主区域
-  className?: string
+  className?: string | string[]
   childMain?: ChildMount
   childArea?: ChildMount
 }>

@@ -4,7 +4,7 @@ import './index.scss'
 type SwitchProps = PropsType<{
   model?:     boolean | RefImpl<boolean>
   onChange?:  (val: boolean) => void
-  className?: string
+  className?: string | string[]
 }>
 export type SwitchExpose = {
   undateModel(bool: boolean): void

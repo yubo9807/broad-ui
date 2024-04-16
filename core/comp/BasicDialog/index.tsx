@@ -4,7 +4,7 @@ import './index.scss';
 
 export type BasicDialogProps = PropsType<{
   model:         boolean | RefImpl<boolean>
-  className?:    string
+  className?:    string | string[]
   isModalClose?: boolean  // 点击蒙层关闭，默认为 true
   children?:     ChildMount
 }>
@@ -41,8 +41,8 @@ export default function(props: BasicDialogProps) {
     }
   }
 
-  return <dialog ref={dialogRef} className='br-basic-dialog' onmousedown={mouseDown} onclose={close}>
-    <div className={['br-basic-dialog-wrap', props.className]} created={props.children as Mount}>
+  return <dialog ref={dialogRef} className={['br-basic-dialog', props.className]} onmousedown={mouseDown} onclose={close}>
+    <div className='br-basic-dialog-wrap' created={props.children as Mount}>
       {props.children}
     </div>
   </dialog>
