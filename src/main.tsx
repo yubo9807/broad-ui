@@ -31,7 +31,7 @@ function App() {
   return <>
     <header className={style.header}>
       <div>
-        <span className={() => [style.iconMenu, open.value && style.active]} onclick={() => open.value = !open.value}>
+        <span className={[style.iconMenu, () => open.value && style.active]} onclick={() => open.value = !open.value}>
           <span></span>
         </span>
         <Link className={style.title} to='/'>{env.PROJECT_NAME}</Link>

@@ -1,12 +1,13 @@
-import { PropsType, watch, h, onMounted, ref, RefImpl, isRef } from "pl-vue"
+import { PropsType, watch, h, onMounted, ref, RefImpl, isRef, ClassNameType } from "pl-vue"
 import { ChildMount, Mount } from "../../utils";
 import './index.scss';
 
 export type BasicDialogProps = PropsType<{
   model:         boolean | RefImpl<boolean>
-  className?:    string | string[]
-  isModalClose?: boolean  // 点击蒙层关闭，默认为 true
+  className?:    ClassNameType
   children?:     ChildMount
+  isModalClose?: boolean  // 点击蒙层关闭，默认为 true
+  onModal?:      (e: MouseEvent) => void
 }>
 export default function(props: BasicDialogProps) {
 
@@ -35,13 +36,17 @@ export default function(props: BasicDialogProps) {
    * @param e 
    */
   function mouseDown(e: MouseEvent) {
-    if (props.isModalClose === false) return; 
     if (e.target === dialogRef.value) {
-      close();
+      props.onModal && props.onModal(e);
+      !(props.isModalClose === false) && close();
     }
   }
 
-  return <dialog ref={dialogRef} className={['br-basic-dialog', props.className]} onmousedown={mouseDown} onclose={close}>
+  return <dialog ref={dialogRef}
+    className={['br-basic-dialog', ...[props.className].flat()]}
+    onmousedown={mouseDown}
+    onclose={close}
+  >
     <div className='br-basic-dialog-wrap' created={props.children as Mount}>
       {props.children}
     </div>

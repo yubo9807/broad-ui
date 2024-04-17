@@ -1,11 +1,11 @@
-import { Children, h, isRef, PropsType, ref, RefImpl } from "pl-vue";
+import { Children, ClassNameType, h, isRef, PropsType, ref, RefImpl } from "pl-vue";
 import { OptionValue } from "./option";
 import './index.scss';
 
 type SelectProps = PropsType<{
   model?:     OptionValue | RefImpl<OptionValue>
   onChange?:  (val: OptionValue) => void
-  className?: string | string[]
+  className?: ClassNameType
   children?:  Children
 }>
 export default function(props: SelectProps) {
@@ -20,7 +20,7 @@ export default function(props: SelectProps) {
     props.onChange && props.onChange(model.value);
   }
 
-  return <select className={['br-select', props.className]} onchange={handleChange}>
+  return <select className={['br-select', ...[props.className].flat()]} onchange={handleChange}>
     {props.children}
   </select>
 }

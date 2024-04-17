@@ -78,7 +78,7 @@ function Comp(props: Props) {
 
   return <div
     ref={elRef}
-    className={() => ['br-message', props.type, visible.value && 'hidden']}
+    className={['br-message', props.type, () => visible.value && 'hidden']}
     data-sort={queue.size - 1 + ''}
     style={`--time: ${ANI_TIME / 1000}s`}
     onmouseenter={cancelClose}

@@ -1,12 +1,12 @@
-import { PropsType, RefImpl, h, Fragment, isRef, ref, useComponent } from "pl-vue";
-import { ChildMount, Mount } from "~/core/utils";
+import { PropsType, RefImpl, h, Fragment, isRef, ref, useComponent, ClassNameType } from "pl-vue";
+import { ChildMount, Mount } from "../../utils";
 import BasicDialog from "../BasicDialog";
 import './index.scss';
 
 type Props = PropsType<{
   model:        boolean | RefImpl<boolean>
   title:        string
-  className?:   string
+  className?:   ClassNameType
   children?:    ChildMount
   childFooter?: ChildMount
   onOk?:        () => void
@@ -16,22 +16,26 @@ export default function Modal(props: Props) {
 
   const model = isRef(props.model) ? props.model : ref(props.model);
 
-  function close() {
+  function cancel() {
     model.value = false;
     if (props.onCancel) props.onCancel();
   }
 
-  return <BasicDialog model={props.model} className={['br-modal', props.className]} isModalClose={false}>
+  return <BasicDialog
+    model={props.model}
+    className={['br-modal', ...[props.className].flat()]}
+    isModalClose={false}
+  >
     <header>
       <h2 className="title">{props.title}</h2>
-      <span className='icon-close' onclick={close}>×</span>
+      <span className='icon-close' onclick={cancel}>×</span>
     </header>
     <main created={props.children as Mount}>
       {props.children}
     </main>
     {<footer created={props.childFooter as Mount}>
       {props.childFooter || <>
-        <button className='btn-cancel' onclick={close}>取消</button>
+        <button className='btn-cancel' onclick={cancel}>取消</button>
         <button className='btn-ok' onclick={props.onOk}>确定</button>
       </>}
     </footer>}

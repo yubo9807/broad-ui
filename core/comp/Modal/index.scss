@@ -1,12 +1,10 @@
 .br-modal{
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.1);
-  &:-internal-dialog-in-top-layer::backdrop{
-    background: transparent;
-  }
+  --border-redius: 12px;
+  border-radius: var(--border-redius);
   > .br-basic-dialog-wrap{
     width: 300px;
     padding: 14px;
+    border-radius: var(--border-redius);
     > header{
       display: flex;
       justify-content: space-between;
@@ -19,7 +17,7 @@
   }
 
   .title{
-    font-size: 16px;
+    font-size: 18px;
   }
   .icon-close{
     font-size: 16px;

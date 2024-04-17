@@ -1,4 +1,4 @@
-import { PropsType, computed, h, ref, RefImpl, isRef } from 'pl-vue';
+import { PropsType, computed, h, ref, RefImpl, isRef, ClassNameType } from 'pl-vue';
 import { copyToBoard } from '../../utils';
 import './index.scss';
 
@@ -9,7 +9,7 @@ export type CodeEditProps = PropsType<{
   isCopy?:    boolean                     // 是否可以进行复制
   onCopy?:    (val: string) => void       // 复制成功后的回调
   onKeyDown?: (e: KeyboardEvent) => void  // 按键按下事件
-  className?: string | string[]
+  className?: ClassNameType
 }>
 export default function(props: CodeEditProps) {
 
@@ -28,7 +28,7 @@ export default function(props: CodeEditProps) {
     props.onCopy && props.onCopy(value);
   }
 
-  return <div className={['br-code-edit', props.className]}>
+  return <div className={['br-code-edit', ...[props.className].flat()]}>
     <ul className='row-num'>
       {() => new Array(rowNum.value).fill(1).map((_, i) => <li>{i + 1}</li>)}
     </ul>

@@ -35,5 +35,5 @@ export default function(props: Props) {
     })
   })
 
-  return <div ref={wrapRef} className={['markdown', props.className]} innerHTML={() => html.value}></div>
+  return <div ref={wrapRef} className={['markdown', ...[props.className].flat()]} innerHTML={() => html.value}></div>
 }
