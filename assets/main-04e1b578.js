@@ -1,0 +1,1 @@
+import{r as o,h as e}from"./pl-vue-d0d20b7e.js";import{a as t}from"./index-e614020f.js";const s=()=>{const i=o(!1);return e("div",{style:"position: relative; height: 300px;"},e(t,{model:i,childTips:e("span",{onclick:()=>i.value=!1},"隐藏")}),e("button",{onclick:()=>i.value=!0},"显示"))};export{s as default};

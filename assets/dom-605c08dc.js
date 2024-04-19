@@ -1,0 +1,1 @@
+import{P as o}from"./index-13500a16.js";import{p as i}from"./pl-vue-d0d20b7e.js";const d=()=>{const n=i(o,{childMain(t){t.innerText="固定区域"},childArea(t){t.innerText="剩余区域"}}),e=document.getElementById("container");e.style.height="300px",e.appendChild(n)};export{d as default};

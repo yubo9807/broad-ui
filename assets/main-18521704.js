@@ -1,1 +1,0 @@
-import{r as o,h as r,o as n}from"./pl-vue-9a5e3e23.js";import{F as u}from"./falls-ab4334f9.js";function l(){const e=o();return n(()=>{new u({el:e.value,column:Math.max(Math.trunc(e.value.offsetWidth/200),2)})}),r("div",{ref:e},[200,300,270,100,400,100,200,300,100,140].map((a,t)=>r("div",{style:`height: ${a}px; background: #eee`},t)))}export{l as default};
