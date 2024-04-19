@@ -15,6 +15,7 @@ export default function(props: PagePropsType) {
     { path: 'taskScheduling', name: '任务调度控制', },
     { path: 'eventEmitter', name: '事件触发形式', },
     { path: 'funcOverload', name: '函数重载', },
+    { path: 'bloomFilter', name: '布隆过滤器', },
     // { path: 'inlay', name: '字符镶嵌', },
   ]
   list.forEach(val => {
