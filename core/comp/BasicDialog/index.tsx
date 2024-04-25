@@ -1,10 +1,11 @@
-import { PropsType, watch, h, onMounted, ref, RefImpl, isRef, ClassNameType } from "pl-vue"
+import { PropsType, watch, h, onMounted, ref, RefImpl, isRef, ClassNameType, StyleType } from "pl-vue"
 import { ChildMount, Mount } from "../../utils";
 import './index.scss';
 
 export type BasicDialogProps = PropsType<{
   model:         boolean | RefImpl<boolean>
   className?:    ClassNameType
+  style?:        StyleType
   children?:     ChildMount
   isModalClose?: boolean  // 点击蒙层关闭，默认为 true
   onModal?:      (e: MouseEvent) => void
@@ -44,6 +45,7 @@ export default function(props: BasicDialogProps) {
 
   return <dialog ref={dialogRef}
     className={['br-basic-dialog', ...[props.className].flat()]}
+    style={props.style}
     onmousedown={mouseDown}
     onclose={close}
   >

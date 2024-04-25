@@ -11,7 +11,7 @@ export class BloomFilter {
    * @param m 比特位大小
    * @param k hash 次数
    */
-  constructor(m: number, k: number) {
+  constructor(m = 1024**2*8, k = 16) {
     const n = Math.ceil(m / 32);
     let i = -1;
     this.m = m = n * 32;

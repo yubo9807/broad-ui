@@ -1,5 +1,5 @@
-import { ClassNameType, PropsType, createSignal, defineExpose, h, ref } from "pl-vue";
-import { ChildMount, Mount } from "~/core/utils";
+import { ClassNameType, PropsType, StyleObject, createSignal, defineExpose, h, ref } from "pl-vue";
+import { ChildMount, Mount } from "../../utils";
 import './index.scss';
 
 export type PartitionProps = PropsType<{
@@ -7,6 +7,7 @@ export type PartitionProps = PropsType<{
   type?:      'horizontal' | 'vertical'  // 方向
   main?:      1 | 2                      // 主区域
   className?: ClassNameType
+  style?:     StyleObject
   childMain?: ChildMount
   childArea?: ChildMount
 }>
@@ -65,7 +66,13 @@ export default function(props: PartitionProps) {
   defineExpose(expose);
 
   const isMain = props.main === 1;
-  return <div ref={wrapEl} className={[`br-partition ${props.type}`, ...[props.className].flat()]} style={() => `--skew: ${partial()}`}>
+  return <div ref={wrapEl}
+    className={[`br-partition ${props.type}`, ...[props.className].flat()]}
+    style={{
+      ...(props.style || {}),
+      '--skew': partial,
+    }}
+  >
     <div
       className={['item', isMain ? 'main' : 'vice']}
       created={(isMain ? props.childMain : props.childArea) as Mount}

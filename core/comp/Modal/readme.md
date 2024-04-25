@@ -1,10 +1,11 @@
-## props
+## Props
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
 | model* | 是否显示 | `boolean \| RefImpl<boolean>` | - | - |
 | title | 标题 | `boolean` | - | - |
-| className | - | `string \| string[]` | - | - |
+| className | - | `ClassNameType` | - | - |
+| style | - | `StyleType` | - | - |
 | children | 内容 | `ChildMount` | - | 可直接写 JSX |
 | childFooter | 底部按钮 | `ChildMount` | - | 可直接写 JSX |
 | onOk | 确认按钮回调 | `() => void` | - | |

@@ -1,4 +1,4 @@
-import { PropsType, RefImpl, h, Fragment, isRef, ref, useComponent, ClassNameType } from "pl-vue";
+import { PropsType, RefImpl, h, Fragment, isRef, ref, useComponent, ClassNameType, StyleType } from "pl-vue";
 import { ChildMount, Mount } from "../../utils";
 import BasicDialog from "../BasicDialog";
 import './index.scss';
@@ -7,6 +7,7 @@ type Props = PropsType<{
   model:        boolean | RefImpl<boolean>
   title:        string
   className?:   ClassNameType
+  style?:       StyleType
   children?:    ChildMount
   childFooter?: ChildMount
   onOk?:        () => void
@@ -24,6 +25,7 @@ export default function Modal(props: Props) {
   return <BasicDialog
     model={props.model}
     className={['br-modal', ...[props.className].flat()]}
+    style={props.style}
     isModalClose={false}
   >
     <header>

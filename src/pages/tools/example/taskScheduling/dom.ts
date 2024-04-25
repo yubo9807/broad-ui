@@ -1,5 +1,5 @@
 import { TaskSchedulings } from "~/core/tools";
-import { delay } from "~/core/utils/async";
+import { delay } from "~/core/utils";
 
 export default () => {
   const task = new TaskSchedulings([3, 3, 1], true);

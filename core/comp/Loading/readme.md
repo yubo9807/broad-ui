@@ -3,7 +3,8 @@
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
 | model* | 是否显示 | `boolean \| RefImpl<boolean>` | - | - |
-| className | - | `string \| string[]` | - | - |
+| className | - | `ClassNameType` | - | - |
+| style | - | `StyleObject` | - | - |
 | childIcon | 挂载节点 Icon | `(el: HTMLElement) => void` | - | 可直接写 JSX |
 | childTips | 修改文字提示 | `(el: HTMLElement) => void` | - | 可直接写 JSX |
 

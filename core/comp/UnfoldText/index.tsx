@@ -1,4 +1,4 @@
-import { PropsType, defineExpose, h, onMounted, ref, watch, RefImpl, isRef, ClassNameType } from "pl-vue"
+import { PropsType, defineExpose, h, onMounted, ref, watch, RefImpl, isRef, ClassNameType, StyleType } from "pl-vue"
 import { ChildMount, Mount, extractNumber } from "../../utils"
 import './index.scss'
 
@@ -6,6 +6,7 @@ export type UnfoldTextProps = PropsType<{
   model:        string | RefImpl<string>
   row?:         number
   className?:   ClassNameType
+  style?:       StyleType
   unfold?:      string
   fold?:        string
   childUnfold?: ChildMount
@@ -66,7 +67,7 @@ export default function(props: UnfoldTextProps) {
     }
   })
 
-  return <div ref={wrapRef} className={['br-unfold-text', ...[props.className].flat()]}>
+  return <div ref={wrapRef} className={['br-unfold-text', ...[props.className].flat()]} style={props.style}>
     {() => origin.value
       ? <div>{() => model.value}</div>
       : <div className={['wrap', () => !isOpen.value && 'is-open']} style={`--row: ${props.row}`}>

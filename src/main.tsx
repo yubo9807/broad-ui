@@ -7,8 +7,7 @@ import Home from './pages/home';
 import Tools from './pages/tools';
 import Comp from './pages/comp';
 import { isPhone } from "./utils/judge";
-import Select from "~/core/comp/Select";
-import Option from "~/core/comp/Select/option";
+import Select, { Option } from "~/core/comp/Select";
 import useScreenStore from '@/store/screen';
 
 function App() {

@@ -9,5 +9,5 @@ export default () => {
     color: var(--color);
   `
 
-  return <div style={inlay.text}>hello</div>
+  return <div style={inlay.text as () => string}>hello</div>
 }

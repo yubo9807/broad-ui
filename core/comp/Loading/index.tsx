@@ -1,10 +1,11 @@
-import { ClassNameType, PropsType, RefImpl, defineExpose, h, isRef, ref, useComponent } from "pl-vue"
-import { ChildMount, ExcludeKey, Mount } from "~/core/utils"
+import { ClassNameType, PropsType, RefImpl, StyleObject, defineExpose, h, isRef, ref, useComponent } from "pl-vue"
+import { ChildMount, ExcludeKey, Mount } from "../../utils"
 import './index.scss'
 
 export type LoadingProps = PropsType<{
   model:      boolean | RefImpl<boolean>
   className?: ClassNameType
+  style?:     StyleObject
   childIcon?: ChildMount
   childTips?: ChildMount
 }>
@@ -21,9 +22,13 @@ export default function Loading(props: LoadingProps) {
     }
   })
 
-  return <div className={['br-loading', ...[props.className].flat()]} style={{
-    display: () => model.value ? 'block' : 'none',
-  }}>
+  return <div
+    className={['br-loading', ...[props.className].flat()]}
+    style={{
+      ...(props.style || {}),
+      display: () => model.value ? 'block' : 'none',
+    }}
+  >
     <div className="wrap">
       <div className="box" created={props.childIcon as Mount}>{props.childIcon}</div>
       <div className='tips' created={props.childTips as Mount}>{props.childTips}</div>

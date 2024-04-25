@@ -1,6 +1,6 @@
 import { h, reactive } from "pl-vue"
 import { TaskScheduling } from "~/core/tools"
-import { delay } from "~/core/utils/async";
+import { delay } from "~/core/utils";
 
 export default () => {
 
