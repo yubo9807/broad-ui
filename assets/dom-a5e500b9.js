@@ -1,1 +1,0 @@
-import{B as a}from"./bloomFilter-a998af41.js";const s=()=>{const o=new a(8192,32);o.add("foo"),o.add("bar"),console.log(o.has("foo")),console.log(o.has("bar")),console.log(o.has("baz"))};export{s as default};
