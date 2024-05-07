@@ -25,7 +25,7 @@ export default function(props: SwitchProps) {
   })
 
   return <div
-    className={['br-switch', model.value ? 'is-open' : '', ...[props.className].flat()]}
+    className={['br-switch', () => model.value ? 'is-open' : '', ...[props.className].flat()]}
     style={props.style}
     onclick={handleCilik}
   >

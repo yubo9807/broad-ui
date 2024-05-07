@@ -7,3 +7,4 @@ export * from './funcOverload';
 export * from './inlay';
 export * from './taskScheduling';
 export * from './bloomFilter';
+export * from './chartTimerBar';

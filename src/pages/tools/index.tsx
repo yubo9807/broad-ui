@@ -10,6 +10,7 @@ export default function(props: PagePropsType) {
   const list: Item[] = [
     { path: 'falls', name: '瀑布流布局', },
     { path: 'chartWave', name: '波浪效果', },
+    { path: 'chartTimerBar', name: '时间轴控制', },
     { path: 'codeConversion', name: '自定义语言高亮', },
     { path: 'fullScreen', name: '全屏控制', },
     { path: 'taskScheduling', name: '任务调度控制', },

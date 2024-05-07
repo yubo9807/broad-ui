@@ -6,6 +6,7 @@ export * from './string';
 export * from './array';
 export * from './type';
 export * from './async';
+export * from './optimize';
 
 /**
  * 简化 useComponent

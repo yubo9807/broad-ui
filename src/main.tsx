@@ -75,4 +75,5 @@ const router = createRouter({
   mode: 'hash',
 });
 app.use(router);
+document.body.innerHTML = '';
 document.body.appendChild(app.render(<App />));
