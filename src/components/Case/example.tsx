@@ -1,4 +1,4 @@
-import { Component, h, nextTick, ref, watch } from "pl-vue";
+import { Component, h, nextTick, ref, render, watch } from "pl-vue";
 import CodeEdit from "~/core/comp/CodeEdit";
 import Dialog from "~/core/comp/BasicDialog";
 import style from './style.module.scss';
@@ -11,7 +11,6 @@ import { Item } from ".";
 import { isPhone } from "@/utils/judge";
 import useScreenStore from '@/store/screen';
 import Message from "~/core/comp/Message";
-import { app } from "@/main";
 
 class CodeConversion2 extends CodeConversion {
   constructor() {
@@ -74,7 +73,7 @@ export default function(row: Item) {
         nextTick(() => {
           const nodes = markdownRef.value.querySelectorAll('pre code');
           [...nodes].forEach((el: HTMLElement) => {
-            const node = app.render(<HignOrderCodeEdit model={el.innerText.trim()} />);
+            const node = render(<HignOrderCodeEdit model={el.innerText.trim()} />);
             markdownRef.value.replaceChild(node, el.parentElement);
           })
         })

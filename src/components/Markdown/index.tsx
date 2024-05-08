@@ -1,10 +1,9 @@
-import { h, nextTick, PropsType, ref, watch } from "pl-vue";
+import { h, nextTick, PropsType, ref, render, watch } from "pl-vue";
 import { CodeConversion } from '~/core/tools';
 import '~/core/styles/markdown.scss';
 import '~/core/styles/custom-code-highlight.scss';
 import { highlightOption } from "@/utils/string";
 import CodeEdit from "~/core/comp/CodeEdit";
-import { app } from "@/main";
 
 type Props = PropsType<{
   text:       string
@@ -20,7 +19,7 @@ export default function(props: Props) {
     nextTick(() => {
       const nodes = wrapRef.value.querySelectorAll('pre code');
       [...nodes].forEach((el: HTMLElement) => {
-        const node = app.render(<CodeEdit model={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
+        const node = render(<CodeEdit model={el.innerText.trim()} isEdit={false} isCopy={true} toHtml={val => conversion.output(val)} />);
         wrapRef.value.replaceChild(node, el.parentElement);
       })
     })

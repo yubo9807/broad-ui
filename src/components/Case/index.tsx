@@ -1,10 +1,9 @@
-import { Component, h, onBeforeUnmount, onMounted } from "pl-vue";
+import { Component, h, onBeforeUnmount, onMounted, render } from "pl-vue";
 import { Router, Route, Link } from "pl-vue/lib/router";
 import style from './style.module.scss';
 import Example from "./example";
 import '~/core/styles/custom-code-highlight.scss';
 import { isPhone } from "@/utils/judge";
-import { app } from "@/main";
 
 export type Item = {
   path:     string
@@ -33,7 +32,7 @@ export default function(props: Props) {
     let node: HTMLElement;
     onMounted(() => {
       const mountNode = props.phoneMountNode();
-      node = app.render(sideNode);
+      node = render(sideNode);
       mountNode.parentElement.insertBefore(node, mountNode.nextSibling);
     })
     onBeforeUnmount(() => {
