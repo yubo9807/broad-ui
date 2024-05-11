@@ -1,9 +1,9 @@
 
 export class BloomFilter {
 
-  m: number
-  k: number
-  buckets: Int8Array | Int16Array | Int32Array | number[]
+  m:          number
+  k:          number
+  buckets:    Int8Array | Int16Array | Int32Array | number[]
   _locations: ArrayBuffer | Int8Array | Int16Array | Int32Array | number[]
 
   /**

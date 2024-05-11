@@ -17,6 +17,7 @@ export default function(props: PagePropsType) {
     { path: 'eventEmitter', name: '事件触发形式', },
     { path: 'funcOverload', name: '函数重载', },
     { path: 'bloomFilter', name: '布隆过滤器', },
+    { path: 'streamSplit', name: '事件流切割', },
     // { path: 'inlay', name: '字符镶嵌', },
   ]
   list.forEach(val => {
