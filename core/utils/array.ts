@@ -80,3 +80,46 @@ function getMiddlePoint(m1: number, m2: number) {
   const x2 = x1 * 3;
   return [x1 + m1, x2 + m1];
 }
+
+type Option = {
+  fontSize?: number
+  gap?:      number
+  last?:     boolean
+}
+/**
+ * 过滤掉超出文本
+ * @param arr 
+ * @param width 
+ * @returns 
+ */
+export function filterExceed(arr: string[], width: number, option: Option = {}) {
+  const config: Option = {
+    fontSize: 12,
+    gap:      30,
+    ...option,
+  }
+  const collect = [];
+  for (let i = 0; i < arr.length; i++) {
+    const str = arr[i];
+    collect.push(str.length * config.fontSize);
+  }
+  const min = Math.min(...collect) + config.gap;
+
+  if (min * arr.length > width) {
+    const result = [];
+    const count = Math.floor(min * arr.length / width);
+    for (let i = 0; i < arr.length; i++) {
+      result.push(i % count === 0 ? arr[i] : '');
+    }
+    if (option.last) {
+      const last = result.findLastIndex(item => item !== '');
+      if (arr.length - last < count) {
+        result[last] = '';
+      }
+      result[result.length - 1] = arr[arr.length - 1];
+    }
+    return result;
+  }
+
+  return arr;
+}

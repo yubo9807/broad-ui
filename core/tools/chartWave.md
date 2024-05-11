@@ -3,7 +3,8 @@
 
 | 属性名 | 说明 | 类型 | 默认值 | 备注 |
 | --- | --- | --- | --- | --- |
-| percentage | 百分比 | `number` | 0 | 取值范围：0-100 |
+| el* | 挂载元素 | `HTMLElement` | - | - |
+| percentage* | 百分比 | `number` | 0 | 取值范围：0-100 |
 | radian | 波浪弧度 | `number` | 1 | - |
 | color | 颜色 | `string` | #0080ff | 仅支持 16 进制 |
 | size | 容器的大小 | `number \| [number, number]` | 父元素宽度 | 单位（px） |

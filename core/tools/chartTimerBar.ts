@@ -1,4 +1,5 @@
-import { computeControlPoint } from "../utils"
+import { computeControlPoint, filterExceed } from '../utils'
+import { priorityObject } from '../utils/object'
 
 type Serie = {
   data:    number[]
@@ -31,12 +32,13 @@ export type ChartTimerBarOption = {
     data:     string[]
     height?:  number
     font?: {
-      size?:  string
-      color?: string
+      size?:      string
+      color?:     string
+      textAlign?: 'left' | 'center' | 'right'
     }
     line?: {
-      width:  number
-      stroke: string
+      width?:  number
+      stroke?: string
     },
     scale?: {
       stroke: string
@@ -45,30 +47,58 @@ export type ChartTimerBarOption = {
   series:     Serie[]
   isPoint?:   boolean
   playSpeed?: number
+  onPlayEnd?:           (isPlay: boolean) => void
   onSliderIndexChange?: (start: number, end: number) => void
 }
 
 export class ChartTimerBar {
 
-  option: ChartTimerBarOption = {
-    el:     null,
-    slider: {
-      width:   2,
-      stroke: '#5879d1',
-      color:  '#5879d155',
-    },
-    playSpeed: 4,
-    isPoint:   true,
-    xAxis: {
-      data:    [],
-    },
-    series: [{
-      smooth: false,
-      data:   [],
-    }]
-  }
+  option: ChartTimerBarOption
   constructor(option: ChartTimerBarOption) {
-    Object.assign(this.option, option);
+    const defaultOption: ChartTimerBarOption = {
+      el:     null,
+      slider: {
+        start:   .2,
+        end:     .6,
+        width:   2,
+        stroke: '#5879d1',
+        color:  '#5879d155',
+      },
+      playSpeed: 4,
+      isPoint:   true,
+      xAxis: {
+        show: true,
+        data: [],
+        font: {
+          size:      '12px',
+          color:     '#666',
+          textAlign: 'center',
+        },
+        line: {
+          width:  1,
+          stroke: '#5879d1',
+        },
+        scale: {
+          stroke: '#5879d1',
+        }
+      },
+      series: [{
+        smooth: false,
+        data:   [],
+        line: {
+          width:  1,
+          stroke: '#5879d1',
+          fill:   '#5879d155',
+        },
+        point: {
+          size:        3,
+          stroke:      '#5879d1',
+          strokeWidth: 1,
+          fill:        '#5879d155',
+        }
+      }]
+    }
+    this.option = priorityObject(option, defaultOption);
 
     this._init();
     option.el.appendChild(this.ctx.canvas);
@@ -93,6 +123,11 @@ export class ChartTimerBar {
     const canvas = document.createElement('canvas');
     this.ctx = canvas.getContext('2d');
     this._change();
+    const sliderStyle = this.option.slider;
+    this._cfg.slider = {
+      left: sliderStyle.start * canvas.width,
+      right: sliderStyle.end * canvas.width,
+    };
 
     canvas.addEventListener('mousemove', e => {
       const x = e.offsetX, y = e.offsetY;
@@ -173,14 +208,6 @@ export class ChartTimerBar {
     const h = this.option.height || this.option.el.offsetHeight;
     this.ctx.canvas.width = w;
     this.ctx.canvas.height = h;
-    const sliderConfig = Object.assign({
-      start: .2,
-      end:   .4,
-    }, this.option.slider);
-    this._cfg.slider = {
-      left: Math.floor(this.option.slider?.start || sliderConfig.start * w),
-      right: Math.ceil(this.option.slider?.end || sliderConfig.end * w),
-    };
     this._cfg.contentH = h - (this.option.xAxis.height || 24);
   }
 
@@ -196,7 +223,8 @@ export class ChartTimerBar {
    * 绘制
    */
   draw() {
-    this.ctx.reset();
+    const { width, height } = this.ctx.canvas;
+    this.ctx.clearRect(0, 0, width, height);
 
     this.option.series.forEach(item => {
       this._drawData(item);
@@ -221,11 +249,12 @@ export class ChartTimerBar {
     this._cfg.gap = gap;
 
     // 线段
-    const lineStyle = Object.assign({
-      width:  1,
-      stroke: '#5879d1',
-      fill:   '#5879d155',
-    }, serie.line);
+    // const lineStyle = Object.assign({
+    //   width:  1,
+    //   stroke: '#5879d1',
+    //   fill:   '#5879d155',
+    // }, serie.line);
+    const lineStyle = serie.line;
     ctx.beginPath();
     ctx.lineWidth = lineStyle.width;
     ctx.strokeStyle = lineStyle.stroke;
@@ -309,16 +338,16 @@ export class ChartTimerBar {
   _drawXAxisData() {
     const ctx = this.ctx;
     const xAxis = this.option.xAxis;
-    const data = xAxis.data;
-    const fontStyle = Object.assign({
-      color: '#000',
-      size:  '12px',
-    }, xAxis.font);
+    const fontStyle = xAxis.font;
+    const data = filterExceed(xAxis.data, ctx.canvas.width, {
+      fontSize: parseInt(fontStyle.size),
+      last:     true,
+    });
     const gap = this._cfg.gap;
     const contentHieght = this._cfg.contentH;
     if (xAxis.show) {
       ctx.beginPath();
-      ctx.textAlign = 'center';
+      ctx.textAlign = fontStyle.textAlign;
       ctx.font = fontStyle.size + ' Arial';
       ctx.fillStyle = fontStyle.color;
       for (let i = 0; i < data.length; i++) {
@@ -358,7 +387,11 @@ export class ChartTimerBar {
     this._getSliderData();
   }
 
-  _backupSilderIndex = [0, 0];
+  destroy() {
+    this.ctx.canvas.remove();
+  }
+
+  _backupSilderIndex = new Array(2);
 
   /**
    * 获取滑块区间内的数据
@@ -368,9 +401,9 @@ export class ChartTimerBar {
     const gap = this.ctx.canvas.width / (this.option.xAxis.data.length - 1);
     const start = Math.ceil(left / gap)
     const end = Math.floor(right / gap);
-    const onSliderIndexChange = this.option.onSliderIndexChange;
     if (this._backupSilderIndex[0] !== start || this._backupSilderIndex[1] !== end) {
       this._backupSilderIndex = [start, end];
+      const onSliderIndexChange = this.option.onSliderIndexChange;
       onSliderIndexChange && onSliderIndexChange(start, end);
     }
   }
@@ -441,19 +474,26 @@ export class ChartTimerBar {
    * 是否正在播放中
    * @returns 
    */
-  isPlay() {
+  get isPlay() {
     return !!this._timer;
   }
 
   /**
    * 播放
    */
-  play(fixed = true) {
-    if (this.isPlay()) return;
+  play(fixed = false) {
+    if (this.isPlay) return;
+    if (this._cfg.slider.right >= this.ctx.canvas.width) {
+      this._cfg.slider.left = 0;
+      this._cfg.slider.right = 2;
+    }
     const playSpeed = this.option.playSpeed;
     this._timer = setInterval(() => {
       if (this._cfg.slider.right >= this.ctx.canvas.width) {
         clearInterval(this._timer);
+        this._timer = null;
+        const onPlayEnd = this.option.onPlayEnd;
+        onPlayEnd && onPlayEnd(this.isPlay);
         return;
       }
       fixed && (this._cfg.slider.left += playSpeed);
@@ -468,5 +508,12 @@ export class ChartTimerBar {
   pause() {
     clearInterval(this._timer);
     this._timer = null;
+  }
+
+  /**
+   * 播放/暂停
+   */
+  togglePlay(fixed = false) {
+    this.isPlay ? this.pause() : this.play(fixed);
   }
 }

@@ -1,4 +1,4 @@
-import { isEven } from "../utils/number"
+import { isEven } from "../utils"
 
 
 type Option = {

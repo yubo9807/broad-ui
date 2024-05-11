@@ -17,6 +17,9 @@ export default () => {
           smooth: true,
           data: [120, 230, 220, 907, 150, 101]
         },
+        {
+          data: [1, 2, 3, 4, 5, 6]
+        }
       ],
       isPoint: false,
       onSliderIndexChange(start, end) {
