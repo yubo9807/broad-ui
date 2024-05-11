@@ -1,1 +1,0 @@
-import{h as o}from"./pl-vue-ddc0d6ad.js";import{M as c}from"./index-79585c5c.js";import"./marked-d5c18544.js";const e=()=>o("div",null,o("button",{onclick:()=>c.success("Success")},"Success"),o("button",{onclick:()=>c.info("Info")},"Info"),o("button",{onclick:()=>c.closeAll()},"Close"));export{e as default};

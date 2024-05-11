@@ -1,0 +1,1 @@
+import"./pl-vue-efdc9048.js";import{C as n}from"./chartTimerBar-b1582ec2.js";import"./array-c774e6c2.js";import"./number-1e8ebfe5.js";const d=()=>{const e=document.getElementById("container");new n({el:e,height:200,xAxis:{data:["2021","2022","2023","2024","2025","2026"]},series:[{data:[120,230,220,907,150,101]}],onSliderIndexChange(t,o){console.log(t,o)}})};export{d as default};

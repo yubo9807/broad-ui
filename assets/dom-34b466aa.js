@@ -1,0 +1,1 @@
+import"./pl-vue-efdc9048.js";import{B as a}from"./bloomFilter-a325ea5d.js";const e=()=>{const o=new a(8192,32);o.add("foo"),o.add("bar"),console.log(o.has("foo")),console.log(o.has("bar")),console.log(o.has("baz"))};export{e as default};

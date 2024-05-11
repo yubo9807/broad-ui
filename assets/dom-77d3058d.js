@@ -1,0 +1,1 @@
+import"./pl-vue-efdc9048.js";import{F as d}from"./funcOverload-5c6792e5.js";const a=()=>{const r=new d;r.addImpl("number","number",(n,t)=>n+t);const e=r.overload(1,2);r.addImpl("string","string",(n,t)=>"str: "+n+t);const o=r.overload("a","b");document.getElementById("container").innerHTML=`${e}<br/>${o}`};export{a as default};

@@ -1,1 +1,0 @@
-import{h as a}from"./pl-vue-ddc0d6ad.js";import{B as l}from"./bloomFilter-a325ea5d.js";const t=()=>{const o=new l(8192,32);return o.add("foo"),o.add("bar"),a("div",null,a("p",null,o.has("foo")+""),a("p",null,o.has("bar")+""),a("p",null,o.has("baz")+""))};export{t as default};

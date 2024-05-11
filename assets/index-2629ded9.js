@@ -1,1 +1,0 @@
-import{i as t,r as d,h as l,q as o}from"./pl-vue-ddc0d6ad.js";function c(e){const a=t(e.model)?e.model:d(e.model);function n(){a.value=!a.value,e.onChange&&e.onChange(a.value)}return o({undateModel(i){a.value=i}}),l("div",{className:["br-switch",()=>a.value?"is-open":"",...[e.className].flat()],style:e.style,onclick:n},l("div",{className:"round"}))}export{c as S};
