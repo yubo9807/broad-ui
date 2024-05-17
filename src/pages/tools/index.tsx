@@ -15,6 +15,7 @@ export default function(props: PagePropsType) {
     { path: 'fullScreen', name: '全屏控制', },
     { path: 'taskScheduling', name: '任务调度控制', },
     { path: 'eventEmitter', name: '事件触发形式', },
+    { path: 'publishSubscribe', name: '发布订阅', },
     { path: 'funcOverload', name: '函数重载', },
     { path: 'bloomFilter', name: '布隆过滤器', },
     { path: 'streamSplit', name: '事件流切割', },
