@@ -1,0 +1,1 @@
+import{h as t}from"./pl-vue-efdc9048.js";import{U as o}from"./index-7dc44198.js";import"./index-df14454e.js";import"./marked-d5c18544.js";const p=()=>t("div",{style:"width: 200px"},t(o,{model:"这是一段很长很长很长很长很长很长很长很长很长很很长很长很长很长很长很长很长很长很长很长的文本，它会被自动展开。"}));export{p as default};

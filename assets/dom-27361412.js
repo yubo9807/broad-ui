@@ -1,0 +1,1 @@
+import{U as t}from"./index-7dc44198.js";import{p as e}from"./pl-vue-efdc9048.js";import"./index-df14454e.js";import"./marked-d5c18544.js";const r=()=>{const o=e(t,{model:"这是一段很长很长很长很长很长很长很长很长很长很很长很长很长很长很长很长很长很长很长很长的文本，它会被自动展开。"});o.style.width="200px",document.getElementById("container").appendChild(o)};export{r as default};

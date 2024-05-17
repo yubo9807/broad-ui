@@ -1,0 +1,1 @@
+import"./pl-vue-efdc9048.js";import{P as c}from"./publishSubscribe-44ea5025.js";const l=()=>{const e=new c;e.on("test",o=>{console.log(o)});const n=document.getElementById("container"),t=document.createElement("button");t.innerText="发送事件",t.addEventListener("click",()=>{e.emit("test","hello world")}),n.appendChild(t)};export{l as default};

@@ -1,0 +1,1 @@
+import{r as t,h as l}from"./pl-vue-efdc9048.js";import{a as e}from"./index-9b65b32b.js";import"./index-df14454e.js";import"./marked-d5c18544.js";const u=()=>{const o=t(!1);return l("div",null,l("button",{onclick:()=>o.value=!0},"显示确认框"),l(e,{model:o,title:"提示",onOk:()=>o.value=!1},l("p",null,"hello"),l("p",null,"world")))};export{u as default};
